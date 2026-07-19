@@ -1,0 +1,13 @@
+{
+  "itemGroup.essentia": "Example Mod Tab",
+  "block.essentia.example_block": "Example Block",
+  "item.essentia.example_item": "Example Item",
+
+  "essentia.configuration.title": "Essentia Configs",
+  "essentia.configuration.section.essentia.common.toml": "Essentia Configs",
+  "essentia.configuration.section.essentia.common.toml.title": "Essentia Configs",
+  "essentia.configuration.items": "Item List",
+  "essentia.configuration.logDirtBlock": "Log Dirt Block",
+  "essentia.configuration.magicNumberIntroduction": "Magic Number Text",
+  "essentia.configuration.magicNumber": "Magic Number"
+}
