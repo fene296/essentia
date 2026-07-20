@@ -1,5 +1,7 @@
 package de.fene296.essentia;
 
+import de.fene296.essentia.item.ModItems;
+import net.minecraft.world.item.CreativeModeTabs;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -26,6 +28,10 @@ public class Essentia {
     // FML will recognize some parameter types like IEventBus or ModContainer and pass them in automatically.
     public Essentia(IEventBus modEventBus, ModContainer modContainer) {
         modEventBus.addListener(this::commonSetup);
+
+        //Register Items
+        ModItems.register(modEventBus);
+
         NeoForge.EVENT_BUS.register(this);
         modEventBus.addListener(this::addCreative);
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
@@ -36,7 +42,14 @@ public class Essentia {
     }
 
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
-
+        if(event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
+            event.accept(ModItems.EARTH_ESSENCE);
+            event.accept(ModItems.LIFE_ESSENCE);
+            event.accept(ModItems.ARCANE_ESSENCE);
+            event.accept(ModItems.LIGHT_ESSENCE);
+            event.accept(ModItems.DARK_ESSENCE);
+            event.accept(ModItems.SOUL_ESSENCE);
+        }
     }
 
     @SubscribeEvent
