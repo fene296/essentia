@@ -16,11 +16,14 @@ public class ModModelProvider extends ModelProvider {
     //Add Items for .json File - Gen
     @Override
     protected void registerModels(BlockModelGenerators blockModels, ItemModelGenerators itemModels) {
-        itemModels.generateFlatItem(ModItems.EARTH_ESSENCE.get(), ModelTemplates.FLAT_ITEM);
-        itemModels.generateFlatItem(ModItems.LIFE_ESSENCE.get(), ModelTemplates.FLAT_ITEM);
-        itemModels.generateFlatItem(ModItems.ARCANE_ESSENCE.get(), ModelTemplates.FLAT_ITEM);
-        itemModels.generateFlatItem(ModItems.LIGHT_ESSENCE.get(), ModelTemplates.FLAT_ITEM);
-        itemModels.generateFlatItem(ModItems.DARK_ESSENCE.get(), ModelTemplates.FLAT_ITEM);
-        itemModels.generateFlatItem(ModItems.SOUL_ESSENCE.get(), ModelTemplates.FLAT_ITEM);
+        itemModels.generateFlatItem(ModItems.EARTH_ESSENCE_CRYSTAL.get(), ModelTemplates.FLAT_ITEM);
+        itemModels.generateFlatItem(ModItems.SOUL_ESSENCE_CRYSTAL.get(), ModelTemplates.FLAT_ITEM);
+        itemModels.generateFlatItem(ModItems.LIGHT_ESSENCE_CRYSTAL.get(), ModelTemplates.FLAT_ITEM);
+        itemModels.generateFlatItem(ModItems.SHADOW_ESSENCE_CRYSTAL.get(), ModelTemplates.FLAT_ITEM);
+        itemModels.generateFlatItem(ModItems.ARCANE_ESSENCE_CRYSTAL.get(), ModelTemplates.FLAT_ITEM);
+        itemModels.generateFlatItem(ModItems.TIME_ESSENCE_CRYSTAL.get(), ModelTemplates.FLAT_ITEM);
+        itemModels.generateFlatItem(ModItems.AETHER_ESSENCE_CRYSTAL.get(), ModelTemplates.FLAT_ITEM);
+        itemModels.generateFlatItem(ModItems.CHAOS_ESSENCE_CRYSTAL.get(), ModelTemplates.FLAT_ITEM);
+        itemModels.generateFlatItem(ModItems.ESSENCE_DUST.get(), ModelTemplates.FLAT_ITEM);
     }
 }

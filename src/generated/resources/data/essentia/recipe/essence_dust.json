@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "essentia",
+  "ingredients": [
+    "minecraft:glowstone_dust",
+    "minecraft:redstone",
+    "minecraft:amethyst_shard"
+  ],
+  "result": {
+    "count": 4,
+    "id": "essentia:essence_dust"
+  }
+}

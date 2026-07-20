@@ -1,6 +1,7 @@
 package de.fene296.essentia;
 
 import de.fene296.essentia.datagen.ModModelProvider;
+import de.fene296.essentia.datagen.ModRecipeProvider;
 import net.minecraft.client.data.models.ModelProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
@@ -15,7 +16,10 @@ public class EssentiaDataGen {
     public static void gatherClientData(GatherDataEvent.Client event) {
         DataGenerator generator = event.getGenerator();
         PackOutput packOutput = generator.getPackOutput();
+        var lookupProvider = event.getLookupProvider();
 
         generator.addProvider(true, new ModModelProvider(packOutput));
+
+        generator.addProvider(true, new ModRecipeProvider.Runner(packOutput, lookupProvider));
     }
 }

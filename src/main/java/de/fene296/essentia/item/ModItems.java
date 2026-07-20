@@ -10,12 +10,15 @@ public class ModItems {
 
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(Essentia.MODID);
 
-    public static final DeferredItem<Item> EARTH_ESSENCE = ITEMS.registerSimpleItem("earth_essence");
-    public static final DeferredItem<Item> LIFE_ESSENCE = ITEMS.registerSimpleItem("life_essence");
-    public static final DeferredItem<Item> ARCANE_ESSENCE = ITEMS.registerSimpleItem("arcane_essence");
-    public static final DeferredItem<Item> LIGHT_ESSENCE = ITEMS.registerSimpleItem("light_essence");
-    public static final DeferredItem<Item> DARK_ESSENCE = ITEMS.registerSimpleItem("dark_essence");
-    public static final DeferredItem<Item> SOUL_ESSENCE = ITEMS.registerSimpleItem("soul_essence");
+    public static final DeferredItem<Item> EARTH_ESSENCE_CRYSTAL = ITEMS.registerSimpleItem("earth_essence_crystal");
+    public static final DeferredItem<Item> SOUL_ESSENCE_CRYSTAL = ITEMS.registerSimpleItem("soul_essence_crystal");
+    public static final DeferredItem<Item> LIGHT_ESSENCE_CRYSTAL = ITEMS.registerSimpleItem("light_essence_crystal");
+    public static final DeferredItem<Item> SHADOW_ESSENCE_CRYSTAL = ITEMS.registerSimpleItem("shadow_essence_crystal");
+    public static final DeferredItem<Item> ARCANE_ESSENCE_CRYSTAL = ITEMS.registerSimpleItem("arcane_essence_crystal");
+    public static final DeferredItem<Item> TIME_ESSENCE_CRYSTAL = ITEMS.registerSimpleItem("time_essence_crystal");
+    public static final DeferredItem<Item> AETHER_ESSENCE_CRYSTAL = ITEMS.registerSimpleItem("aether_essence_crystal");
+    public static final DeferredItem<Item> CHAOS_ESSENCE_CRYSTAL = ITEMS.registerSimpleItem("chaos_essence_crystal");
+    public static final DeferredItem<Item> ESSENCE_DUST = ITEMS.registerSimpleItem("essence_dust");
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

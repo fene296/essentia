@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "essentia:item/light_essence"
+    "layer0": "essentia:item/earth_essence_crystal"
   }
 }

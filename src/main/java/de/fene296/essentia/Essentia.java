@@ -1,5 +1,6 @@
 package de.fene296.essentia;
 
+import de.fene296.essentia.creativemodeltab.ModCreativeModeTabs;
 import de.fene296.essentia.item.ModItems;
 import net.minecraft.world.item.CreativeModeTabs;
 import org.slf4j.Logger;
@@ -29,27 +30,18 @@ public class Essentia {
     public Essentia(IEventBus modEventBus, ModContainer modContainer) {
         modEventBus.addListener(this::commonSetup);
 
+        //Register Creative Tab
+        ModCreativeModeTabs.register(modEventBus);
+
         //Register Items
         ModItems.register(modEventBus);
 
         NeoForge.EVENT_BUS.register(this);
-        modEventBus.addListener(this::addCreative);
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
     }
 
     private void commonSetup(FMLCommonSetupEvent event) {
 
-    }
-
-    private void addCreative(BuildCreativeModeTabContentsEvent event) {
-        if(event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
-            event.accept(ModItems.EARTH_ESSENCE);
-            event.accept(ModItems.LIFE_ESSENCE);
-            event.accept(ModItems.ARCANE_ESSENCE);
-            event.accept(ModItems.LIGHT_ESSENCE);
-            event.accept(ModItems.DARK_ESSENCE);
-            event.accept(ModItems.SOUL_ESSENCE);
-        }
     }
 
     @SubscribeEvent

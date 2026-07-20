@@ -1,8 +1,12 @@
 {
-  "item.essentia.earth_essence": "Earth Essence",
-  "item.essentia.life_essence": "Life Essence",
-  "item.essentia.arcane_essence": "Arcane Essence",
-  "item.essentia.light_essence": "Light Essence",
-  "item.essentia.dark_essence": "Dark Essence",
-  "item.essentia.soul_essence": "Soul Essence"
+  "item.essentia.earth_essence_crystal": "Earth Essence Crystal",
+  "item.essentia.soul_essence_crystal": "Soul Essence Crystal",
+  "item.essentia.light_essence_crystal": "Light Essence Crystal",
+  "item.essentia.shadow_essence_crystal": "Shadow Essence Crystal",
+  "item.essentia.arcane_essence_crystal": "Arcane Essence Crystal",
+  "item.essentia.time_essence_crystal": "Time Essence Crystal",
+  "item.essentia.aether_essence_crystal": "Aether Essence Crystal",
+  "item.essentia.chaos_essence_crystal": "Chaos Essence Crystal",
+  "item.essentia.essence_dust": "Essence Dust",
+  "creativetab.essentia": "Essentia"
 }
