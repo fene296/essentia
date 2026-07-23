@@ -24,6 +24,9 @@ public class ModModelProvider extends ModelProvider {
         itemModels.generateFlatItem(ModItems.TIME_ESSENCE_CRYSTAL.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(ModItems.AETHER_ESSENCE_CRYSTAL.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(ModItems.CHAOS_ESSENCE_CRYSTAL.get(), ModelTemplates.FLAT_ITEM);
+
         itemModels.generateFlatItem(ModItems.ESSENCE_DUST.get(), ModelTemplates.FLAT_ITEM);
+
+        itemModels.generateFlatItem(ModItems.PRIMORDIAL_CRYSTAL.get(), ModelTemplates.FLAT_ITEM);
     }
 }

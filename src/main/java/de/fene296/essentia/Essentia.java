@@ -1,5 +1,6 @@
 package de.fene296.essentia;
 
+import de.fene296.essentia.block.EssentiaBlocks;
 import de.fene296.essentia.creativemodeltab.ModCreativeModeTabs;
 import de.fene296.essentia.item.ModItems;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -35,6 +36,9 @@ public class Essentia {
 
         //Register Items
         ModItems.register(modEventBus);
+
+        //Regsiter Blocks
+        EssentiaBlocks.register(modEventBus);
 
         NeoForge.EVENT_BUS.register(this);
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
