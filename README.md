@@ -1,25 +1,183 @@
+# ✨ Essentia
 
-Installation information
-=======
+> *Every stone holds a fragment of forgotten magic.*
 
-This template repository can be directly cloned to get you started with a new
-mod. Simply create a new repository cloned from this one, by following the
-instructions provided by [GitHub](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template).
+**Essentia** is a magic-focused Minecraft mod for **NeoForge** that introduces a completely new progression system based on **Essences**, **Crystals**, and **Rituals**.
 
-Once you have your clone, simply open the repository in the IDE of your choice. The usual recommendation for an IDE is either IntelliJ IDEA or Eclipse.
+Instead of crafting powerful items directly, players must discover ancient magic, extract hidden essences from the world, and use them to perform increasingly powerful rituals.
 
-If at any point you are missing libraries in your IDE, or you've run into problems you can
-run `gradlew --refresh-dependencies` to refresh the local cache. `gradlew clean` to reset everything 
-{this does not affect your code} and then start the process again.
+---
 
-Mapping Names:
-============
-By default, the MDK is configured to use the official mapping names from Mojang for methods and fields 
-in the Minecraft codebase. These names are covered by a specific license. All modders should be aware of this
-license. For the latest license text, refer to the mapping file itself, or the reference copy here:
-https://github.com/NeoForged/NeoForm/blob/main/Mojang.md
+## 📦 Features
 
-Additional Resources: 
-==========
-Community Documentation: https://docs.neoforged.net/  
-NeoForged Discord: https://discord.neoforged.net/
+### 🔮 Essence System
+
+Discover and harness eight unique essences:
+
+- 🌍 Earth Essence
+- 👻 Soul Essence
+- ☀️ Light Essence
+- 🌑 Shadow Essence
+- ✨ Arcane Essence
+- ⏳ Time Essence
+- 🌌 Aether Essence
+- 💥 Chaos Essence
+
+Each essence represents a different aspect of magic and unlocks new rituals, machines, and abilities.
+
+---
+
+### 💎 Crystal Progression
+
+Essences are bound to **Raw Essence Crystals** using an **Essence Binder**.
+
+```
+Item
+    +
+Raw Essence Crystal
+    +
+Catalysator
+        ↓
+ Essence Crystal
+```
+
+Essence Crystals are consumed by magical machines and rituals.
+
+---
+
+### 🏛 Ancient Shrines
+
+Your journey begins by discovering an **Ancient Essence Shrine** hidden somewhere in the world.
+
+Inside rests the **Origin Crystal**, the source of all magical crystals.
+
+Without it, true magic cannot begin.
+
+---
+
+### 🔥 Rituals
+
+Perform magical rituals to unlock powerful abilities.
+
+Examples include:
+
+- Creating magical light
+- Crafting enchantments
+- Summoning creatures
+- Creating legendary equipment
+- Summoning bosses
+- Unlocking Creative Flight
+
+---
+
+### ⚙ Machines
+
+Early Game:
+
+- Essence Extractor
+- Essence Burner
+
+Mid Game:
+
+- Essence Extractor II
+- Essence Tank
+- Crystalizer
+- Advanced Essence Burner
+
+Late Game:
+
+- Wireless Essence Links
+- Essence Nexus
+- Automatic Crystal Growth
+
+---
+
+### 📖 In-Game Books
+
+#### Book of the Adept
+
+A complete tutorial guiding players through the mod.
+
+#### Essence Grimoire
+
+An encyclopedia that records every discovered item and its essence values.
+
+Example:
+
+```
+Stone
+
+Earth Essence: 3
+```
+
+---
+
+## 🚀 Planned Progression
+
+```
+Explore
+      ↓
+Find the Ancient Shrine
+      ↓
+Harvest Raw Essence Crystals
+      ↓
+Extract Essences
+      ↓
+Perform Rituals
+      ↓
+Unlock Ancient Magic
+      ↓
+Master Aether & Chaos
+```
+
+---
+
+## 🛠 Development Status
+
+Current development stage:
+
+- ✅ Base Mod Setup
+- ✅ Items
+- ✅ Essence System Design
+- 🔄 Machines
+- 🔄 Ritual System
+- ⏳ Bosses
+- ⏳ Endgame Content
+
+---
+
+## 📋 Roadmap
+
+### Version 0.1
+
+- Essence Crystals
+- Essence Binder
+- Essence Extractor
+- Essence Burner
+- Tutorial Book
+
+---
+
+## ⚒ Built With
+
+- Minecraft **1.21.x**
+- NeoForge **26.2**
+- Java 21
+
+---
+
+## ❤️ Contributing
+
+Suggestions and feedback are always welcome!
+
+Feel free to open an Issue or submit a Pull Request.
+
+---
+
+## 📜 License
+
+This project is licensed under the MIT License (or your preferred license).
+
+---
+
+> *"Magic is not created. It is merely awakened."*
