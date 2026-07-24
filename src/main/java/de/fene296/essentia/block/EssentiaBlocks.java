@@ -3,7 +3,6 @@ package de.fene296.essentia.block;
 import de.fene296.essentia.Essentia;
 import de.fene296.essentia.item.ModItems;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -35,27 +34,26 @@ public class EssentiaBlocks {
 
     public static final DeferredBlock<AmethystClusterBlock> SMALL_PRIMORDIAL_BUD = registerBlock(
             "small_primordial_bud",
-            key -> new AmethystClusterBlock(3,4,budProperties())
+            properties -> new AmethystClusterBlock(3,4,budProperties(properties))
     );
 
     public static final DeferredBlock<AmethystClusterBlock> MEDIUM_PRIMORDIAL_BUD = registerBlock(
             "medium_primordial_bud",
-            key -> new AmethystClusterBlock(4,3,budProperties())
+            properties -> new AmethystClusterBlock(4,3,budProperties(properties))
     );
 
     public static final DeferredBlock<AmethystClusterBlock> LARGE_PRIMORDIAL_BUD = registerBlock(
             "large_primordial_bud",
-            key -> new AmethystClusterBlock(5,3,budProperties())
+            properties -> new AmethystClusterBlock(5,3,budProperties(properties))
     );
 
     public static final DeferredBlock<AmethystClusterBlock> PRIMORDIAL_CRYSTAL_CLUSTER = registerBlock(
             "primordial_crystal_cluster",
-            key -> new AmethystClusterBlock(7,3, budProperties().lightLevel(state -> 6))
+            properties -> new AmethystClusterBlock(7,3, budProperties(properties).lightLevel(state -> 6))
     );
 
-    private static BlockBehaviour.Properties budProperties() {
-        return BlockBehaviour.Properties.of()
-                .mapColor(MapColor.COLOR_PURPLE)
+    private static BlockBehaviour.Properties budProperties(BlockBehaviour.Properties properties) {
+        return properties.mapColor(MapColor.COLOR_PURPLE)
                 .noCollision()
                 .strength(1.5f)
                 .sound(SoundType.AMETHYST_CLUSTER)
