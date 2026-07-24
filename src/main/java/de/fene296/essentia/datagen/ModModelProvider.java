@@ -1,6 +1,8 @@
 package de.fene296.essentia.datagen;
 
 import de.fene296.essentia.Essentia;
+import de.fene296.essentia.EssentiaClient;
+import de.fene296.essentia.block.EssentiaBlocks;
 import de.fene296.essentia.item.ModItems;
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
@@ -28,5 +30,11 @@ public class ModModelProvider extends ModelProvider {
         itemModels.generateFlatItem(ModItems.ESSENCE_DUST.get(), ModelTemplates.FLAT_ITEM);
 
         itemModels.generateFlatItem(ModItems.PRIMORDIAL_CRYSTAL.get(), ModelTemplates.FLAT_ITEM);
+
+        blockModels.createTrivialCube(EssentiaBlocks.BUDDING_PRIMORDIAL_CRYSTAL_BLOCK.get());
+        blockModels.createAmethystCluster(EssentiaBlocks.SMALL_PRIMORDIAL_BUD.get());
+        blockModels.createAmethystCluster(EssentiaBlocks.MEDIUM_PRIMORDIAL_BUD.get());
+        blockModels.createAmethystCluster(EssentiaBlocks.LARGE_PRIMORDIAL_BUD.get());
+        blockModels.createAmethystCluster(EssentiaBlocks.PRIMORDIAL_CRYSTAL_CLUSTER.get());
     }
 }

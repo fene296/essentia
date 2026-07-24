@@ -1,0 +1,30 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "essentia:block/primordial_crystal_cluster",
+      "x": 180
+    },
+    "facing=east": {
+      "model": "essentia:block/primordial_crystal_cluster",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north": {
+      "model": "essentia:block/primordial_crystal_cluster",
+      "x": 90
+    },
+    "facing=south": {
+      "model": "essentia:block/primordial_crystal_cluster",
+      "x": 90,
+      "y": 180
+    },
+    "facing=up": {
+      "model": "essentia:block/primordial_crystal_cluster"
+    },
+    "facing=west": {
+      "model": "essentia:block/primordial_crystal_cluster",
+      "x": 90,
+      "y": 270
+    }
+  }
+}
