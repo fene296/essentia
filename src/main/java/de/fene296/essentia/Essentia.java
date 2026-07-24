@@ -1,8 +1,7 @@
 package de.fene296.essentia;
 
-import de.fene296.essentia.creativemodeltab.ModCreativeModeTabs;
-import de.fene296.essentia.item.ModItems;
-import net.minecraft.world.item.CreativeModeTabs;
+import de.fene296.essentia.creativemodeltab.EssentiaCreativeModeTabs;
+import de.fene296.essentia.item.EssentiaItems;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -14,7 +13,6 @@ import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
-import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 
 
@@ -31,10 +29,10 @@ public class Essentia {
         modEventBus.addListener(this::commonSetup);
 
         //Register Creative Tab
-        ModCreativeModeTabs.register(modEventBus);
+        EssentiaCreativeModeTabs.register(modEventBus);
 
         //Register Items
-        ModItems.register(modEventBus);
+        EssentiaItems.register(modEventBus);
 
         NeoForge.EVENT_BUS.register(this);
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);

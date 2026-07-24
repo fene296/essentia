@@ -1,13 +1,11 @@
 package de.fene296.essentia.datagen;
 
-import de.fene296.essentia.item.ModItems;
+import de.fene296.essentia.item.EssentiaItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 
 import java.util.concurrent.CompletableFuture;
@@ -36,7 +34,7 @@ public class ModRecipeProvider extends RecipeProvider {
 
     @Override
     protected void buildRecipes() {
-        shapeless(RecipeCategory.MISC, ModItems.ESSENCE_DUST.get(), 4)
+        shapeless(RecipeCategory.MISC, EssentiaItems.ESSENCE_DUST.get(), 4)
                 .requires(Items.GLOWSTONE_DUST)
                 .requires(Items.REDSTONE)
                 .requires(Items.AMETHYST_SHARD)
