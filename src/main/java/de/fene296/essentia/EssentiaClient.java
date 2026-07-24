@@ -27,5 +27,6 @@ public class EssentiaClient {
         // Some client setup code
         Essentia.LOGGER.info("HELLO FROM CLIENT SETUP");
         Essentia.LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
+
     }
 }
