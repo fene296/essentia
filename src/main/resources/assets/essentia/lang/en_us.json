@@ -8,5 +8,9 @@
   "item.essentia.aether_essence_crystal": "Aether Essence Crystal",
   "item.essentia.chaos_essence_crystal": "Chaos Essence Crystal",
   "item.essentia.essence_dust": "Essence Dust",
+
+  "block.essentia.budding_primordial" : "Budding Primordial",
+  "block.essentia.damaged_budding_primordial" : "Damaged Budding Primordial",
+
   "creativetab.essentia": "Essentia"
 }
