@@ -6,6 +6,8 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.AmethystClusterBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -19,6 +21,24 @@ public class BuddingPrimordial extends Block {
 
     public BuddingPrimordial(Properties properties) {
         super(properties);
+    }
+
+
+    @Override
+    public BlockState playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player) {
+        BlockState result = super.playerWillDestroy(level, pos, state, player);
+
+        if (!level.isClientSide()) {
+            level.explode(
+                    null,
+                    pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
+                    15.0F,
+                    false,
+                    Level.ExplosionInteraction.TNT
+            );
+        }
+
+        return result;
     }
 
     @Override
