@@ -21,6 +21,11 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
     protected void generate() {
         dropSelf(EssentiaBlocks.DAMAGED_BUDDING_PRIMORDIAL.get());
 
+        dropSelf(EssentiaBlocks.SMALL_PRIMORDIAL_BUD.get());
+        dropSelf(EssentiaBlocks.MEDIUM_PRIMORDIAL_BUD.get());
+        dropSelf(EssentiaBlocks.LARGE_PRIMORDIAL_BUD.get());
+        dropSelf(EssentiaBlocks.PRIMORDIAL_CLUSTER.get());
+
         //add(//Block, createOreDrop(org, drop);
         dropOther(EssentiaBlocks.BUDDING_PRIMORDIAL.get(), EssentiaBlocks.DAMAGED_BUDDING_PRIMORDIAL.get());
     }

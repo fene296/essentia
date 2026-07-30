@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "essentia:block/medium_primordial_bud",
+    "particle": "essentia:block/medium_primordial_bud"
+  }
+}

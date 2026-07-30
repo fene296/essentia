@@ -29,12 +29,25 @@ public class EssentiaBlocks {
             properties -> new Block(properties.strength(5f).requiresCorrectToolForDrops().sound(SoundType.AMETHYST))
     );
 
+    public static final DeferredBlock<AmethystClusterBlock> SMALL_PRIMORDIAL_BUD = registerBlock("small_primordial_bud",
+            properties -> new AmethystClusterBlock(3,4, budProperties(properties)));
+
+    public static final DeferredBlock<AmethystClusterBlock> MEDIUM_PRIMORDIAL_BUD = registerBlock("medium_primordial_bud",
+            properties -> new AmethystClusterBlock(3,4, budProperties(properties)));
+
+    public static final DeferredBlock<AmethystClusterBlock> LARGE_PRIMORDIAL_BUD = registerBlock("large_primordial_bud",
+            properties -> new AmethystClusterBlock(3,4, budProperties(properties)));
+
+    public static final DeferredBlock<AmethystClusterBlock> PRIMORDIAL_CLUSTER = registerBlock("primordial_cluster",
+            properties -> new AmethystClusterBlock(3,4, budProperties(properties)));
+
     public static ResourceKey<Block> getResourceKey(Block block) {
         return BuiltInRegistries.BLOCK.getResourceKey(block).get();
     }
 
-
-
+    private static BlockBehaviour.Properties budProperties(BlockBehaviour.Properties properties) {
+        return properties.noCollision().strength(1.5f).sound(SoundType.AMETHYST_CLUSTER);
+    }
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Function<BlockBehaviour.Properties, T> function) {
         DeferredBlock<T> toReturn = BLOCKS.registerBlock(name, function);
