@@ -7,7 +7,13 @@ import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.ModelProvider;
 import net.minecraft.client.data.models.model.ModelTemplates;
+import net.minecraft.core.Holder;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
+import net.minecraft.world.level.block.Block;
+
+import java.util.Set;
+import java.util.stream.Stream;
 
 public class ModModelProvider extends ModelProvider {
     public ModModelProvider(PackOutput output) {
@@ -31,5 +37,10 @@ public class ModModelProvider extends ModelProvider {
         //Blocks
         blockModels.createTrivialCube(EssentiaBlocks.BUDDING_PRIMORDIAL.get());
         blockModels.createTrivialCube(EssentiaBlocks.DAMAGED_BUDDING_PRIMORDIAL.get());
+
+        blockModels.createAmethystCluster(EssentiaBlocks.SMALL_PRIMORDIAL_BUD.get());
+        blockModels.createAmethystCluster(EssentiaBlocks.MEDIUM_PRIMORDIAL_BUD.get());
+        blockModels.createAmethystCluster(EssentiaBlocks.LARGE_PRIMORDIAL_BUD.get());
+        blockModels.createAmethystCluster(EssentiaBlocks.PRIMORDIAL_CLUSTER.get());
     }
 }
