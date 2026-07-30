@@ -46,7 +46,7 @@ public class EssentiaBlocks {
     }
 
     private static BlockBehaviour.Properties budProperties(BlockBehaviour.Properties properties) {
-        return properties.noCollision().strength(1.5f).sound(SoundType.AMETHYST_CLUSTER);
+        return properties.strength(1.5f).sound(SoundType.AMETHYST_CLUSTER);
     }
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Function<BlockBehaviour.Properties, T> function) {
