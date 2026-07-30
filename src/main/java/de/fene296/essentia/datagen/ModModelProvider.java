@@ -32,12 +32,14 @@ public class ModModelProvider extends ModelProvider {
         itemModels.generateFlatItem(EssentiaItems.TIME_ESSENCE_CRYSTAL.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(EssentiaItems.AETHER_ESSENCE_CRYSTAL.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(EssentiaItems.CHAOS_ESSENCE_CRYSTAL.get(), ModelTemplates.FLAT_ITEM);
+        itemModels.generateFlatItem(EssentiaItems.PRIMORDIAL_CRYSTAL.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(EssentiaItems.ESSENCE_DUST.get(), ModelTemplates.FLAT_ITEM);
 
         //Blocks
         blockModels.createTrivialCube(EssentiaBlocks.BUDDING_PRIMORDIAL.get());
         blockModels.createTrivialCube(EssentiaBlocks.DAMAGED_BUDDING_PRIMORDIAL.get());
 
+        //AmethystCluster
         blockModels.createAmethystCluster(EssentiaBlocks.SMALL_PRIMORDIAL_BUD.get());
         blockModels.createAmethystCluster(EssentiaBlocks.MEDIUM_PRIMORDIAL_BUD.get());
         blockModels.createAmethystCluster(EssentiaBlocks.LARGE_PRIMORDIAL_BUD.get());

@@ -19,11 +19,19 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
     protected void addTags(HolderLookup.Provider provider) {
         tag(BlockTags.MINEABLE_WITH_PICKAXE)
                 .add(EssentiaBlocks.getResourceKey(EssentiaBlocks.BUDDING_PRIMORDIAL.get()))
-                .add(EssentiaBlocks.getResourceKey(EssentiaBlocks.DAMAGED_BUDDING_PRIMORDIAL.get()));
+                .add(EssentiaBlocks.getResourceKey(EssentiaBlocks.DAMAGED_BUDDING_PRIMORDIAL.get()))
+                .add(EssentiaBlocks.getResourceKey(EssentiaBlocks.SMALL_PRIMORDIAL_BUD.get()))
+                .add(EssentiaBlocks.getResourceKey(EssentiaBlocks.MEDIUM_PRIMORDIAL_BUD.get()))
+                .add(EssentiaBlocks.getResourceKey(EssentiaBlocks.LARGE_PRIMORDIAL_BUD.get()))
+                .add(EssentiaBlocks.getResourceKey(EssentiaBlocks.PRIMORDIAL_CLUSTER.get()));
 
         tag(BlockTags.NEEDS_DIAMOND_TOOL)
                 .add(EssentiaBlocks.getResourceKey(EssentiaBlocks.BUDDING_PRIMORDIAL.get()))
-                .add(EssentiaBlocks.getResourceKey(EssentiaBlocks.DAMAGED_BUDDING_PRIMORDIAL.get()));
+                .add(EssentiaBlocks.getResourceKey(EssentiaBlocks.DAMAGED_BUDDING_PRIMORDIAL.get()))
+                .add(EssentiaBlocks.getResourceKey(EssentiaBlocks.SMALL_PRIMORDIAL_BUD.get()))
+                .add(EssentiaBlocks.getResourceKey(EssentiaBlocks.MEDIUM_PRIMORDIAL_BUD.get()))
+                .add(EssentiaBlocks.getResourceKey(EssentiaBlocks.LARGE_PRIMORDIAL_BUD.get()))
+                .add(EssentiaBlocks.getResourceKey(EssentiaBlocks.PRIMORDIAL_CLUSTER.get()));
 
     }
 }

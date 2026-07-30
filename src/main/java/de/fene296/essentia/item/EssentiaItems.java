@@ -20,6 +20,9 @@ public class EssentiaItems {
     public static final DeferredItem<Item> TIME_ESSENCE_CRYSTAL = ITEMS.registerSimpleItem("time_essence_crystal");
     public static final DeferredItem<Item> AETHER_ESSENCE_CRYSTAL = ITEMS.registerSimpleItem("aether_essence_crystal");
     public static final DeferredItem<Item> CHAOS_ESSENCE_CRYSTAL = ITEMS.registerSimpleItem("chaos_essence_crystal");
+
+    public static final DeferredItem<Item> PRIMORDIAL_CRYSTAL = ITEMS.registerSimpleItem("primordial_crystal");
+
     public static final DeferredItem<Item> ESSENCE_DUST = ITEMS.registerSimpleItem("essence_dust");
 
     public static ResourceKey<Item> getResourceKey(Item item) {

@@ -28,6 +28,7 @@ public class EssentiaCreativeModeTabs {
                 output.accept(EssentiaItems.SOUL_ESSENCE_CRYSTAL);
                 output.accept(EssentiaItems.TIME_ESSENCE_CRYSTAL);
                 output.accept(EssentiaItems.SHADOW_ESSENCE_CRYSTAL);
+                output.accept(EssentiaItems.PRIMORDIAL_CRYSTAL);
                 output.accept(EssentiaItems.ESSENCE_DUST);
 
                 output.accept(EssentiaBlocks.BUDDING_PRIMORDIAL);
