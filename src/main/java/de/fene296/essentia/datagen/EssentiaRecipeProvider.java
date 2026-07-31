@@ -10,8 +10,8 @@ import net.minecraft.world.item.Items;
 
 import java.util.concurrent.CompletableFuture;
 
-public class ModRecipeProvider extends RecipeProvider {
-    public ModRecipeProvider(HolderLookup.Provider registries, RecipeOutput output) {
+public class EssentiaRecipeProvider extends RecipeProvider {
+    public EssentiaRecipeProvider(HolderLookup.Provider registries, RecipeOutput output) {
         super(registries, output);
     }
 
@@ -23,7 +23,7 @@ public class ModRecipeProvider extends RecipeProvider {
 
         @Override
         protected RecipeProvider createRecipeProvider(HolderLookup.Provider registries, RecipeOutput output) {
-            return new ModRecipeProvider(registries, output);
+            return new EssentiaRecipeProvider(registries, output);
         }
 
         @Override

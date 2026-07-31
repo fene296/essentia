@@ -7,16 +7,10 @@ import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.ModelProvider;
 import net.minecraft.client.data.models.model.ModelTemplates;
-import net.minecraft.core.Holder;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
-import net.minecraft.world.level.block.Block;
 
-import java.util.Set;
-import java.util.stream.Stream;
-
-public class ModModelProvider extends ModelProvider {
-    public ModModelProvider(PackOutput output) {
+public class EssentiaModelProvider extends ModelProvider {
+    public EssentiaModelProvider(PackOutput output) {
         super(output, Essentia.MODID);
     }
 

@@ -1,14 +1,12 @@
 package de.fene296.essentia;
 
-import de.fene296.essentia.datagen.ModBlockLootTableProvider;
-import de.fene296.essentia.datagen.ModBlockTagsProvider;
-import de.fene296.essentia.datagen.ModModelProvider;
-import de.fene296.essentia.datagen.ModRecipeProvider;
-import net.minecraft.client.data.models.ModelProvider;
+import de.fene296.essentia.datagen.EssentiaBlockLootTableProvider;
+import de.fene296.essentia.datagen.EssentiaBlockTagsProvider;
+import de.fene296.essentia.datagen.EssentiaModelProvider;
+import de.fene296.essentia.datagen.EssentiaRecipeProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.loot.LootTableProvider;
-import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -26,11 +24,11 @@ public class EssentiaDataGen {
         PackOutput packOutput = generator.getPackOutput();
         var lookupProvider = event.getLookupProvider();
 
-        generator.addProvider(true, new ModModelProvider(packOutput));
+        generator.addProvider(true, new EssentiaModelProvider(packOutput));
 
-        generator.addProvider(true, new ModBlockTagsProvider(packOutput, lookupProvider));
-        generator.addProvider(true, new LootTableProvider(packOutput, Collections.emptySet(), List.of(new LootTableProvider.SubProviderEntry(ModBlockLootTableProvider::new, LootContextParamSets.BLOCK)), lookupProvider));
+        generator.addProvider(true, new EssentiaBlockTagsProvider(packOutput, lookupProvider));
+        generator.addProvider(true, new LootTableProvider(packOutput, Collections.emptySet(), List.of(new LootTableProvider.SubProviderEntry(EssentiaBlockLootTableProvider::new, LootContextParamSets.BLOCK)), lookupProvider));
 
-        generator.addProvider(true, new ModRecipeProvider.Runner(packOutput, lookupProvider));
+        generator.addProvider(true, new EssentiaRecipeProvider.Runner(packOutput, lookupProvider));
     }
 }

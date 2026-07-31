@@ -9,9 +9,9 @@ import net.neoforged.neoforge.common.data.BlockTagsProvider;
 
 import java.util.concurrent.CompletableFuture;
 
-public class ModBlockTagsProvider extends BlockTagsProvider {
+public class EssentiaBlockTagsProvider extends BlockTagsProvider {
 
-    public ModBlockTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider) {
+    public EssentiaBlockTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider) {
         super(output, lookupProvider, Essentia.MODID);
     }
 
