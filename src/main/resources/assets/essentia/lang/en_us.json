@@ -7,6 +7,15 @@
   "item.essentia.time_essence_crystal": "Time Essence Crystal",
   "item.essentia.aether_essence_crystal": "Aether Essence Crystal",
   "item.essentia.chaos_essence_crystal": "Chaos Essence Crystal",
+  "item.essentia.primordial_crystal" : "Primordial Crystal",
   "item.essentia.essence_dust": "Essence Dust",
+
+  "block.essentia.budding_primordial" : "Budding Primordial",
+  "block.essentia.damaged_budding_primordial" : "Damaged Budding Primordial",
+  "block.essentia.small_primordial_bud" : "Small Primordial Bud",
+  "block.essentia.medium_primordial_bud" : "Medium Primordial Bud",
+  "block.essentia.large_primordial_bud" : "Large Primordial Bud",
+  "block.essentia.primordial_cluster" : "Primordial Cluster",
+
   "creativetab.essentia": "Essentia"
 }

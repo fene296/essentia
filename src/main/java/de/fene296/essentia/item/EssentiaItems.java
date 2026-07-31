@@ -1,6 +1,8 @@
 package de.fene296.essentia.item;
 
 import de.fene296.essentia.Essentia;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.Item;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -18,7 +20,14 @@ public class EssentiaItems {
     public static final DeferredItem<Item> TIME_ESSENCE_CRYSTAL = ITEMS.registerSimpleItem("time_essence_crystal");
     public static final DeferredItem<Item> AETHER_ESSENCE_CRYSTAL = ITEMS.registerSimpleItem("aether_essence_crystal");
     public static final DeferredItem<Item> CHAOS_ESSENCE_CRYSTAL = ITEMS.registerSimpleItem("chaos_essence_crystal");
+
+    public static final DeferredItem<Item> PRIMORDIAL_CRYSTAL = ITEMS.registerSimpleItem("primordial_crystal");
+
     public static final DeferredItem<Item> ESSENCE_DUST = ITEMS.registerSimpleItem("essence_dust");
+
+    public static ResourceKey<Item> getResourceKey(Item item) {
+        return BuiltInRegistries.ITEM.getResourceKey(item).get();
+    }
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

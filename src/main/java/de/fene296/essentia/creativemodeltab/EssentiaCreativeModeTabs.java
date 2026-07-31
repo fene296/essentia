@@ -1,6 +1,7 @@
 package de.fene296.essentia.creativemodeltab;
 
 import de.fene296.essentia.Essentia;
+import de.fene296.essentia.block.EssentiaBlocks;
 import de.fene296.essentia.item.EssentiaItems;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
@@ -27,7 +28,16 @@ public class EssentiaCreativeModeTabs {
                 output.accept(EssentiaItems.SOUL_ESSENCE_CRYSTAL);
                 output.accept(EssentiaItems.TIME_ESSENCE_CRYSTAL);
                 output.accept(EssentiaItems.SHADOW_ESSENCE_CRYSTAL);
+                output.accept(EssentiaItems.PRIMORDIAL_CRYSTAL);
                 output.accept(EssentiaItems.ESSENCE_DUST);
+
+                output.accept(EssentiaBlocks.BUDDING_PRIMORDIAL);
+                output.accept(EssentiaBlocks.DAMAGED_BUDDING_PRIMORDIAL);
+
+                output.accept(EssentiaBlocks.SMALL_PRIMORDIAL_BUD);
+                output.accept(EssentiaBlocks.MEDIUM_PRIMORDIAL_BUD);
+                output.accept(EssentiaBlocks.LARGE_PRIMORDIAL_BUD);
+                output.accept(EssentiaBlocks.PRIMORDIAL_CLUSTER);
             })
             .build());
 
