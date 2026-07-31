@@ -9,7 +9,7 @@
         "processors": "essentia:ignore_air",
         "projection": "rigid"
       },
-      "weight": 5
+      "weight": 12
     },
     {
       "element": {
@@ -18,7 +18,7 @@
         "processors": "essentia:ignore_air",
         "projection": "rigid"
       },
-      "weight": 5
+      "weight": 4
     },
     {
       "element": {
@@ -27,7 +27,7 @@
         "processors": "essentia:ignore_air",
         "projection": "rigid"
       },
-      "weight": 5
+      "weight": 4
     },
     {
       "element": {

@@ -1,6 +1,9 @@
 {
   "type": "minecraft:jigsaw",
-  "biomes": "#minecraft:is_overworld",
+  "biomes": [
+    "minecraft:plains",
+    "minecraft:forest"
+  ],
   "step": "surface_structures",
   "start_pool": "essentia:primordial_pile",
   "size": 1,
