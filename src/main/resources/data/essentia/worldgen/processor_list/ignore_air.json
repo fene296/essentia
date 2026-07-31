@@ -3,7 +3,9 @@
     {
       "processor_type": "minecraft:block_ignore",
       "blocks": [
-        "minecraft:air"
+        {
+          "Name": "minecraft:air"
+        }
       ]
     }
   ]
