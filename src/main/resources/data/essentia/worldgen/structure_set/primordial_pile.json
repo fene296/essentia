@@ -1,0 +1,17 @@
+{
+  "structures": [
+    {
+      "structure": "essentia:primordial_chamber",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "spacing": 24,
+    "separation": 10,
+    "salt": 84729123,
+    "frequency_reduction_method": "default",
+    "frequency": 1.0,
+    "locate_offset": [0, 0, 0]
+  }
+}
