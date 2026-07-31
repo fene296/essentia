@@ -6,7 +6,7 @@
       "element": {
         "element_type": "minecraft:single_pool_element",
         "location": "essentia:primordial_pile_1",
-        "processors": "minecraft:empty",
+        "processors": "essentia:ignore_air",
         "projection": "rigid"
       },
       "weight": 1
@@ -15,7 +15,7 @@
       "element": {
         "element_type": "minecraft:single_pool_element",
         "location": "essentia:primordial_pile_2",
-        "processors": "minecraft:empty",
+        "processors": "essentia:ignore_air",
         "projection": "rigid"
       },
       "weight": 1
