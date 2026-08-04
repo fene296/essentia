@@ -38,5 +38,8 @@ public class EssentiaModelProvider extends ModelProvider {
         blockModels.createAmethystCluster(EssentiaBlocks.MEDIUM_PRIMORDIAL_BUD.get());
         blockModels.createAmethystCluster(EssentiaBlocks.LARGE_PRIMORDIAL_BUD.get());
         blockModels.createAmethystCluster(EssentiaBlocks.PRIMORDIAL_CLUSTER.get());
+
+        //No DataGen needed
+        blockModels.createNonTemplateModelBlock(EssentiaBlocks.ESSENCE_EXTRACTOR.get());
     }
 }

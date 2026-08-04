@@ -16,6 +16,7 @@
   "block.essentia.medium_primordial_bud" : "Medium Primordial Bud",
   "block.essentia.large_primordial_bud" : "Large Primordial Bud",
   "block.essentia.primordial_cluster" : "Primordial Cluster",
+  "block.essentia.essence_extractor" : "Essence Extractor",
 
   "creativetab.essentia": "Essentia"
 }

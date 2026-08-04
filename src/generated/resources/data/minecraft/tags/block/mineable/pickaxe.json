@@ -5,6 +5,7 @@
     "essentia:small_primordial_bud",
     "essentia:medium_primordial_bud",
     "essentia:large_primordial_bud",
-    "essentia:primordial_cluster"
+    "essentia:primordial_cluster",
+    "essentia:essence_extractor"
   ]
 }

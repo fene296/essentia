@@ -28,6 +28,7 @@ public class EssentiaBlockLootTableProvider extends BlockLootSubProvider {
     @Override
     protected void generate() {
         dropSelf(EssentiaBlocks.DAMAGED_BUDDING_PRIMORDIAL.get());
+        dropSelf(EssentiaBlocks.ESSENCE_EXTRACTOR.get());
 
         add(EssentiaBlocks.SMALL_PRIMORDIAL_BUD.get(), this::createSilkTouchOnlyTable);
         add(EssentiaBlocks.MEDIUM_PRIMORDIAL_BUD.get(), this::createSilkTouchOnlyTable);
