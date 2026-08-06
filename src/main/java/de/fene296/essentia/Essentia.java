@@ -1,6 +1,7 @@
 package de.fene296.essentia;
 
 import de.fene296.essentia.block.EssentiaBlocks;
+import de.fene296.essentia.block.entity.EssentiaBlockEntities;
 import de.fene296.essentia.creativemodeltab.EssentiaCreativeModeTabs;
 import de.fene296.essentia.item.EssentiaItems;
 import org.slf4j.Logger;
@@ -37,6 +38,9 @@ public class Essentia {
 
         //Register Blocks
         EssentiaBlocks.register(modEventBus);
+
+        //Register Block-Entities
+        EssentiaBlockEntities.register(modEventBus);
 
         NeoForge.EVENT_BUS.register(this);
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
