@@ -4,6 +4,7 @@ import de.fene296.essentia.block.EssentiaBlocks;
 import de.fene296.essentia.block.entity.EssentiaBlockEntities;
 import de.fene296.essentia.creativemodeltab.EssentiaCreativeModeTabs;
 import de.fene296.essentia.item.EssentiaItems;
+import de.fene296.essentia.screen.EssentiaMenuTypes;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -41,6 +42,9 @@ public class Essentia {
 
         //Register Block-Entities
         EssentiaBlockEntities.register(modEventBus);
+
+        //Register Menus
+        EssentiaMenuTypes.register(modEventBus);
 
         NeoForge.EVENT_BUS.register(this);
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);

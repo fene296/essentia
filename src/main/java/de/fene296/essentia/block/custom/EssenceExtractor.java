@@ -3,10 +3,12 @@ package de.fene296.essentia.block.custom;
 import com.mojang.serialization.MapCodec;
 import de.fene296.essentia.block.entity.EssenceExtractorEntity;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
@@ -68,6 +70,11 @@ public class EssenceExtractor extends BaseEntityBlock {
     protected InteractionResult useItemOn(ItemStack itemStack, BlockState state, Level level, BlockPos pos,
                                           Player player, InteractionHand hand, BlockHitResult hitResult) {
         if(level.getBlockEntity(pos) instanceof EssenceExtractorEntity essenceExtractorEntity) {
+            if(player.isCrouching()) {
+                player.openMenu(new SimpleMenuProvider(essenceExtractorEntity, Component.translatable("block.essentia.essence_extractor")), pos);
+                return InteractionResult.SUCCESS;
+            }
+
             boolean isPedestalEmpty = essenceExtractorEntity.inventory.getResource(0).isEmpty();
 
             // Insert
