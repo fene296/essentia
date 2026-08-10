@@ -10,22 +10,46 @@ import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 
-public record ChamberRecipe(Ingredient inputItem, ItemStackTemplate output) implements Recipe<ChamberRecipeInput> {
+public record ChamberRecipe(
+        Ingredient resource, int resourceCount,
+        Ingredient dust, int dustCount,
+        Ingredient crystal, int crystalCount,
+        ItemStackTemplate output
+) implements Recipe<ChamberRecipeInput> {
 
     public static final MapCodec<ChamberRecipe> CODEC = RecordCodecBuilder.mapCodec(instance ->
             instance.group(
-                    Ingredient.CODEC.fieldOf("ingredient").forGetter(ChamberRecipe::inputItem),
+                    Ingredient.CODEC.fieldOf("resource").forGetter(ChamberRecipe::resource),
+                    com.mojang.serialization.Codec.INT.optionalFieldOf("resourceCount", 1).forGetter(ChamberRecipe::resourceCount),
+                    Ingredient.CODEC.fieldOf("dust").forGetter(ChamberRecipe::dust),
+                    com.mojang.serialization.Codec.INT.optionalFieldOf("dustCount", 1).forGetter(ChamberRecipe::dustCount),
+                    Ingredient.CODEC.fieldOf("crystal").forGetter(ChamberRecipe::crystal),
+                    com.mojang.serialization.Codec.INT.optionalFieldOf("crystalCount", 1).forGetter(ChamberRecipe::crystalCount),
                     ItemStackTemplate.CODEC.fieldOf("result").forGetter(ChamberRecipe::output)
             ).apply(instance, ChamberRecipe::new));
+
     public static final StreamCodec<RegistryFriendlyByteBuf, ChamberRecipe> STREAM_CODEC =
-            StreamCodec.composite(
-                    Ingredient.CONTENTS_STREAM_CODEC,
-                    ChamberRecipe::inputItem,
-
-                    ItemStackTemplate.STREAM_CODEC,
-                    ChamberRecipe::output,
-
-                    ChamberRecipe::new);
+            StreamCodec.of(
+                    (buf, recipe) -> {
+                        Ingredient.CONTENTS_STREAM_CODEC.encode(buf, recipe.resource);
+                        net.minecraft.network.codec.ByteBufCodecs.VAR_INT.encode(buf, recipe.resourceCount);
+                        Ingredient.CONTENTS_STREAM_CODEC.encode(buf, recipe.dust);
+                        net.minecraft.network.codec.ByteBufCodecs.VAR_INT.encode(buf, recipe.dustCount);
+                        Ingredient.CONTENTS_STREAM_CODEC.encode(buf, recipe.crystal);
+                        net.minecraft.network.codec.ByteBufCodecs.VAR_INT.encode(buf, recipe.crystalCount);
+                        ItemStackTemplate.STREAM_CODEC.encode(buf, recipe.output);
+                    },
+                    (buf) -> {
+                        Ingredient resource = Ingredient.CONTENTS_STREAM_CODEC.decode(buf);
+                        int resourceCount = net.minecraft.network.codec.ByteBufCodecs.VAR_INT.decode(buf);
+                        Ingredient dust = Ingredient.CONTENTS_STREAM_CODEC.decode(buf);
+                        int dustCount = net.minecraft.network.codec.ByteBufCodecs.VAR_INT.decode(buf);
+                        Ingredient crystal = Ingredient.CONTENTS_STREAM_CODEC.decode(buf);
+                        int crystalCount = net.minecraft.network.codec.ByteBufCodecs.VAR_INT.decode(buf);
+                        ItemStackTemplate output = ItemStackTemplate.STREAM_CODEC.decode(buf);
+                        return new ChamberRecipe(resource, resourceCount, dust, dustCount, crystal, crystalCount, output);
+                    }
+            );
 
     @Override
     public boolean matches(ChamberRecipeInput input, Level level) {
@@ -33,7 +57,9 @@ public record ChamberRecipe(Ingredient inputItem, ItemStackTemplate output) impl
             return false;
         }
 
-        return inputItem.test(input.getItem(0));
+        return resource.test(input.resource()) && input.resource().getCount() >= resourceCount
+                && dust.test(input.dust()) && input.dust().getCount() >= dustCount
+                && crystal.test(input.crystal()) && input.crystal().getCount() >= crystalCount;
     }
 
     @Override

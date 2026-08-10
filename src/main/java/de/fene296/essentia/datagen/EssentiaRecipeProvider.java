@@ -47,12 +47,20 @@ public class EssentiaRecipeProvider extends RecipeProvider {
                 .save(output);
 
 
-        ChamberRecipeBuilder.crystallizerRecipe(RecipeCategory.MISC, Ingredient.of(Items.DRAGON_BREATH), EssentiaItems.CHAOS_ESSENCE_CRYSTAL)
-                .unlockedBy(getHasName(Items.DRAGON_BREATH), has(Items.DRAGON_BREATH))
-                .save(output, "tutorialmod:chaos_crystal");
+        ChamberRecipeBuilder.crystallizerRecipe(RecipeCategory.MISC,
+                        Ingredient.of(Items.DIRT), 4,
+                        Ingredient.of(EssentiaItems.ESSENCE_DUST.get()), 1,
+                        Ingredient.of(EssentiaItems.PRIMORDIAL_CRYSTAL.get()), 1,
+                        EssentiaItems.EARTH_ESSENCE_CRYSTAL.get())
+                .unlockedBy(getHasName(Items.DIRT), has(Items.DIRT))
+                .save(output);
 
-        ChamberRecipeBuilder.crystallizerRecipe(RecipeCategory.MISC, Ingredient.of(Blocks.DIRT), EssentiaItems.EARTH_ESSENCE_CRYSTAL)
-                .unlockedBy(getHasName(Blocks.DIRT), has(Blocks.DIRT))
-                .save(output, "tutorialmod:earth_crystal");
+        ChamberRecipeBuilder.crystallizerRecipe(RecipeCategory.MISC,
+                        Ingredient.of(Items.DRAGON_BREATH), 1,
+                        Ingredient.of(EssentiaItems.ESSENCE_DUST.get()), 1,
+                        Ingredient.of(EssentiaItems.PRIMORDIAL_CRYSTAL.get()), 1,
+                        EssentiaItems.CHAOS_ESSENCE_CRYSTAL.get())
+                .unlockedBy(getHasName(Items.DRAGON_BREATH), has(Items.DRAGON_BREATH))
+                .save(output);
     }
 }

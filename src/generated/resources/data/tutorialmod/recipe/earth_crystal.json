@@ -1,7 +1,0 @@
-{
-  "type": "essentia:chamber",
-  "ingredient": "minecraft:dirt",
-  "result": {
-    "id": "essentia:earth_essence_crystal"
-  }
-}

@@ -1,0 +1,10 @@
+{
+  "type": "essentia:chamber",
+  "crystal": "essentia:primordial_crystal",
+  "dust": "essentia:essence_dust",
+  "resource": "minecraft:dirt",
+  "resourceCount": 4,
+  "result": {
+    "id": "essentia:earth_essence_crystal"
+  }
+}

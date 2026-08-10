@@ -21,6 +21,7 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.RecipeHolder;
@@ -143,12 +144,15 @@ public class ChamberBlockEntity extends BlockEntity implements MenuProvider {
 
     private void craftItem() {
         Optional<RecipeHolder<ChamberRecipe>> recipe = getCurrentRecipe();
-        ItemStack output = recipe.get().value().assemble(new ChamberRecipeInput(inventory.getResource(INPUT_SLOT).toStack()));
+        ChamberRecipe value = recipe.get().value();
+        ItemStack output = value.assemble(currentInput());
 
         try(Transaction transaction = Transaction.openRoot()) {
             ItemAccess itemAccess = ItemAccess.forHandlerIndex(inventory, OUTPUT_SLOT);
 
-            inventory.extract(INPUT_SLOT, inventory.getResource(INPUT_SLOT), 1, transaction);
+            inventory.extract(INPUT_SLOT, inventory.getResource(INPUT_SLOT), value.resourceCount(), transaction);
+            inventory.extract(DUST_SLOT, inventory.getResource(DUST_SLOT), value.dustCount(), transaction);
+            inventory.extract(CRYSTAL_SLOT, inventory.getResource(CRYSTAL_SLOT), value.crystalCount(), transaction);
             inventory.set(OUTPUT_SLOT, ItemResource.of(output), itemAccess.getAmount() + output.getCount());
 
             transaction.commit();
@@ -174,7 +178,7 @@ public class ChamberBlockEntity extends BlockEntity implements MenuProvider {
             return false;
         }
 
-        ItemStack output = recipe.get().value().assemble(new ChamberRecipeInput(inventory.getResource(INPUT_SLOT).toStack()));
+        ItemStack output = recipe.get().value().assemble(currentInput());
 
         boolean outputSlotAmount = canInsertAmountIntoOutputSlot(output.getCount());
         boolean outputSlotItem = canInsertItemIntoOutputSlot(output);
@@ -182,10 +186,21 @@ public class ChamberBlockEntity extends BlockEntity implements MenuProvider {
         return outputSlotAmount && outputSlotItem;
     }
 
+    private ChamberRecipeInput currentInput() {
+        ItemAccess ressourceAccess = ItemAccess.forHandlerIndex(inventory, INPUT_SLOT);
+        ItemAccess dustAccess = ItemAccess.forHandlerIndex(inventory, DUST_SLOT);
+        ItemAccess crystalAccess = ItemAccess.forHandlerIndex(inventory, CRYSTAL_SLOT);
+
+        return new ChamberRecipeInput(
+                ressourceAccess.getResource().toStack(ressourceAccess.getAmount()),
+                dustAccess.getResource().toStack(dustAccess.getAmount()),
+                crystalAccess.getResource().toStack(crystalAccess.getAmount())
+        );
+    }
+
     private Optional<RecipeHolder<ChamberRecipe>> getCurrentRecipe() {
         return ((ServerLevel) level).recipeAccess()
-                .getRecipeFor(EssentiaRecipes.CHAMBER_TYPE.get(),
-                        new ChamberRecipeInput(inventory.getResource(INPUT_SLOT).toStack()), level);
+                .getRecipeFor(EssentiaRecipes.CHAMBER_TYPE.get(), currentInput(), level);
     }
 
     private boolean canInsertItemIntoOutputSlot(ItemStack output) {

@@ -18,22 +18,46 @@ public class ChamberRecipeBuilder implements RecipeBuilder {
 
     private final RecipeCategory category;
     private final ItemStackTemplate result;
-    private final Ingredient ingredient;
+
+    private final Ingredient resource;
+    private final int resourceCount;
+    private final Ingredient dust;
+    private final int dustCount;
+    private final Ingredient crystal;
+    private final int crystalCount;
+
     private final RecipeUnlockAdvancementBuilder advancementBuilder = new RecipeUnlockAdvancementBuilder();
     private @Nullable String group;
 
-    private ChamberRecipeBuilder(RecipeCategory category, Ingredient ingredient, ItemStackTemplate result) {
+    private ChamberRecipeBuilder(RecipeCategory category, Ingredient resource, int resourceCount,
+                                 Ingredient dust, int dustCount, Ingredient crystal, int crystalCount,
+                                 ItemStackTemplate result) {
         this.category = category;
         this.result = result;
-        this.ingredient = ingredient;
+        this.resource = resource;
+        this.resourceCount = resourceCount;
+        this.dust = dust;
+        this.dustCount = dustCount;
+        this.crystal = crystal;
+        this.crystalCount = crystalCount;
     }
 
-    public static ChamberRecipeBuilder crystallizerRecipe(RecipeCategory category, Ingredient ingredient, ItemLike result, int count) {
-        return new ChamberRecipeBuilder(category, ingredient, new ItemStackTemplate(result.asItem(), count));
+    public static ChamberRecipeBuilder crystallizerRecipe(RecipeCategory category,
+                                                          Ingredient resource, int resourceCount,
+                                                          Ingredient dust, int dustCount,
+                                                          Ingredient crystal, int crystalCount,
+                                                          ItemLike result, int resultCount) {
+        return new ChamberRecipeBuilder(category, resource, resourceCount, dust, dustCount, crystal, crystalCount,
+                new ItemStackTemplate(result.asItem(), resultCount));
     }
 
-    public static ChamberRecipeBuilder crystallizerRecipe(RecipeCategory category, Ingredient ingredient, ItemLike result) {
-        return new ChamberRecipeBuilder(category, ingredient, new ItemStackTemplate(result.asItem()));
+    public static ChamberRecipeBuilder crystallizerRecipe(RecipeCategory category,
+                                                          Ingredient resource, int resourceCount,
+                                                          Ingredient dust, int dustCount,
+                                                          Ingredient crystal, int crystalCount,
+                                                          ItemLike result) {
+        return new ChamberRecipeBuilder(category, resource, resourceCount, dust, dustCount, crystal, crystalCount,
+                new ItemStackTemplate(result.asItem()));
     }
 
     @Override
@@ -55,7 +79,7 @@ public class ChamberRecipeBuilder implements RecipeBuilder {
 
     @Override
     public void save(RecipeOutput output, ResourceKey<Recipe<?>> id) {
-        ChamberRecipe recipe = new ChamberRecipe(this.ingredient, this.result);
+        ChamberRecipe recipe = new ChamberRecipe(resource, resourceCount, dust, dustCount, crystal, crystalCount, this.result);
         output.accept(id, recipe, this.advancementBuilder.build(output, id, this.category));
     }
 }

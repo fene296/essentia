@@ -1,0 +1,9 @@
+{
+  "type": "essentia:chamber",
+  "crystal": "essentia:primordial_crystal",
+  "dust": "essentia:essence_dust",
+  "resource": "minecraft:dragon_breath",
+  "result": {
+    "id": "essentia:chaos_essence_crystal"
+  }
+}
