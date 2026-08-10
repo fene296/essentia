@@ -17,6 +17,10 @@ public class EssentiaBlockEntities {
             () -> new BlockEntityType<>(
             EssenceExtractorEntity::new, EssentiaBlocks.ESSENCE_EXTRACTOR.get()));
 
+    public static final Supplier<BlockEntityType<ChamberBlockEntity>> CHAMBER_BE = BLOCK_ENTITIES.register("chamber_be",
+            () -> new BlockEntityType<>(
+                    ChamberBlockEntity::new, EssentiaBlocks.CHAMBER.get()));
+
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);
     }

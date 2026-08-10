@@ -3,6 +3,7 @@ package de.fene296.essentia;
 import de.fene296.essentia.block.entity.EssentiaBlockEntities;
 import de.fene296.essentia.block.entity.renderer.EssenceExtractorEntityRenderer;
 import de.fene296.essentia.screen.EssentiaMenuTypes;
+import de.fene296.essentia.screen.custom.ChamberScreen;
 import de.fene296.essentia.screen.custom.EssenceExtractorScreen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.MenuScreens;
@@ -44,5 +45,6 @@ public class EssentiaClient {
     @SubscribeEvent
     public static void registerScreens(RegisterMenuScreensEvent event) {
         event.register(EssentiaMenuTypes.ESSENCE_EXTRACTOR_MENU.get(), EssenceExtractorScreen::new);
+        event.register(EssentiaMenuTypes.CHAMBER_MENU.get(), ChamberScreen::new);
     }
 }

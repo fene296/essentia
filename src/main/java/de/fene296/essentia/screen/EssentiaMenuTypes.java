@@ -1,6 +1,7 @@
 package de.fene296.essentia.screen;
 
 import de.fene296.essentia.Essentia;
+import de.fene296.essentia.screen.custom.ChamberMenu;
 import de.fene296.essentia.screen.custom.EssenceExtractorMenu;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -15,6 +16,11 @@ public class EssentiaMenuTypes {
     public static final DeferredRegister<MenuType<?>> MENUS = DeferredRegister.create(Registries.MENU, Essentia.MODID);
 
     public static final DeferredHolder<MenuType<?>, MenuType<EssenceExtractorMenu>> ESSENCE_EXTRACTOR_MENU = registerMenuType("essence_extractor_menu", EssenceExtractorMenu::new);
+
+
+    public static final DeferredHolder<MenuType<?>, MenuType<ChamberMenu>> CHAMBER_MENU = registerMenuType("chamber_menu", ChamberMenu::new);
+
+
 
     private static <T extends AbstractContainerMenu>DeferredHolder<MenuType<?>, MenuType<T>> registerMenuType(String name, IContainerFactory<T> factory) {
         return MENUS.register(name, () -> IMenuTypeExtension.create(factory));

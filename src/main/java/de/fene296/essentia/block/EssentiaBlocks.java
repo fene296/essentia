@@ -2,6 +2,7 @@ package de.fene296.essentia.block;
 
 import de.fene296.essentia.Essentia;
 import de.fene296.essentia.block.custom.BuddingPrimordial;
+import de.fene296.essentia.block.custom.Chamber;
 import de.fene296.essentia.block.custom.DamagedBuddingPrimordial;
 import de.fene296.essentia.block.custom.EssenceExtractor;
 import de.fene296.essentia.item.EssentiaItems;
@@ -35,6 +36,11 @@ public class EssentiaBlocks {
     public static final DeferredBlock<EssenceExtractor> ESSENCE_EXTRACTOR = registerBlock(
             "essence_extractor",
             properties -> new EssenceExtractor(properties.strength(5f).requiresCorrectToolForDrops().sound(SoundType.STONE))
+    );
+
+    public static final DeferredBlock<Chamber> CHAMBER = registerBlock(
+            "chamber",
+            properties -> new Chamber(properties.strength(5f).sound(SoundType.STONE))
     );
 
 
