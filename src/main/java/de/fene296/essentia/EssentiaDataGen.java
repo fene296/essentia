@@ -1,9 +1,6 @@
 package de.fene296.essentia;
 
-import de.fene296.essentia.datagen.EssentiaBlockLootTableProvider;
-import de.fene296.essentia.datagen.EssentiaBlockTagsProvider;
-import de.fene296.essentia.datagen.EssentiaModelProvider;
-import de.fene296.essentia.datagen.EssentiaRecipeProvider;
+import de.fene296.essentia.datagen.*;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.loot.LootTableProvider;
@@ -27,6 +24,8 @@ public class EssentiaDataGen {
         generator.addProvider(true, new EssentiaModelProvider(packOutput));
 
         generator.addProvider(true, new EssentiaBlockTagsProvider(packOutput, lookupProvider));
+        generator.addProvider(true, new EssentiaItemTagsProvider(packOutput, lookupProvider));
+
         generator.addProvider(true, new LootTableProvider(packOutput, Collections.emptySet(), List.of(new LootTableProvider.SubProviderEntry(EssentiaBlockLootTableProvider::new, LootContextParamSets.BLOCK)), lookupProvider));
 
         generator.addProvider(true, new EssentiaRecipeProvider.Runner(packOutput, lookupProvider));

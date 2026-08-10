@@ -1,8 +1,11 @@
 package de.fene296.essentia.screen.custom;
 
+import de.fene296.essentia.Essentia;
 import de.fene296.essentia.block.EssentiaBlocks;
 import de.fene296.essentia.block.entity.ChamberBlockEntity;
+import de.fene296.essentia.item.EssentiaItems;
 import de.fene296.essentia.screen.EssentiaMenuTypes;
+import de.fene296.essentia.tags.EssentiaTags;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -34,8 +37,18 @@ public class ChamberMenu extends AbstractContainerMenu {
         addPlayerHotbar(inv);
 
         this.addSlot(new ResourceHandlerSlot(handler, handler::set,0, 19,  17));
-        this.addSlot(new ResourceHandlerSlot(handler, handler::set,1, 19,  53));
-        this.addSlot(new ResourceHandlerSlot(handler, handler::set,2, 80,  35));
+        this.addSlot(new ResourceHandlerSlot(handler, handler::set,1, 19,  53) {
+            @Override
+            public boolean mayPlace(ItemStack stack) {
+                return stack.is(EssentiaTags.Items.MAGIC_DUST);
+            }
+        });
+        this.addSlot(new ResourceHandlerSlot(handler, handler::set,2, 80,  35) {
+            @Override
+            public boolean mayPlace(ItemStack stack) {
+                return stack.is(EssentiaItems.PRIMORDIAL_CRYSTAL.get());
+            }
+        });
         this.addSlot(new ResourceHandlerSlot(handler, handler::set,3, 138, 35) {
             @Override
             public boolean mayPlace(ItemStack itemStack) {
