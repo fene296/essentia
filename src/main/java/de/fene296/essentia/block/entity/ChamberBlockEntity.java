@@ -1,6 +1,9 @@
 package de.fene296.essentia.block.entity;
 
 import de.fene296.essentia.item.EssentiaItems;
+import de.fene296.essentia.recipe.ChamberRecipe;
+import de.fene296.essentia.recipe.ChamberRecipeInput;
+import de.fene296.essentia.recipe.EssentiaRecipes;
 import de.fene296.essentia.screen.custom.ChamberMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
@@ -10,6 +13,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleContainer;
@@ -19,6 +23,7 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -32,6 +37,7 @@ import net.neoforged.neoforge.transfer.transaction.Transaction;
 import org.jspecify.annotations.Nullable;
 
 import javax.swing.plaf.basic.BasicComboBoxUI;
+import java.util.Optional;
 
 public class ChamberBlockEntity extends BlockEntity implements MenuProvider {
 
@@ -117,7 +123,7 @@ public class ChamberBlockEntity extends BlockEntity implements MenuProvider {
     }
 
     public void tick(Level level, BlockPos pos, BlockState state) {
-        if(hasRecipe()) {
+        if(hasRecipe() && isOutputSlotEmptyOrReceivable()) {
             increaseCratingProgress();
             setChanged(level, pos, state);
 
@@ -130,15 +136,19 @@ public class ChamberBlockEntity extends BlockEntity implements MenuProvider {
         }
     }
 
+    private boolean isOutputSlotEmptyOrReceivable() {
+        return inventory.getResource(OUTPUT_SLOT).isEmpty() ||
+                inventory.getResource(OUTPUT_SLOT).test(stack -> stack.count() < stack.getMaxStackSize());
+    }
+
     private void craftItem() {
-        ItemStack output = new ItemStack(EssentiaItems.CHAOS_ESSENCE_CRYSTAL.get());
+        Optional<RecipeHolder<ChamberRecipe>> recipe = getCurrentRecipe();
+        ItemStack output = recipe.get().value().assemble(new ChamberRecipeInput(inventory.getResource(INPUT_SLOT).toStack()));
 
         try(Transaction transaction = Transaction.openRoot()) {
             ItemAccess itemAccess = ItemAccess.forHandlerIndex(inventory, OUTPUT_SLOT);
 
             inventory.extract(INPUT_SLOT, inventory.getResource(INPUT_SLOT), 1, transaction);
-            inventory.extract(DUST_SLOT, inventory.getResource(DUST_SLOT), 1, transaction);
-            inventory.extract(CRYSTAL_SLOT, inventory.getResource(CRYSTAL_SLOT), 1, transaction);
             inventory.set(OUTPUT_SLOT, ItemResource.of(output), itemAccess.getAmount() + output.getCount());
 
             transaction.commit();
@@ -159,16 +169,23 @@ public class ChamberBlockEntity extends BlockEntity implements MenuProvider {
     }
 
     private boolean hasRecipe() {
-        ItemStack output = new ItemStack(EssentiaItems.CHAOS_ESSENCE_CRYSTAL.get());
+        Optional<RecipeHolder<ChamberRecipe>> recipe = getCurrentRecipe();
+        if(recipe.isEmpty()) {
+            return false;
+        }
+
+        ItemStack output = recipe.get().value().assemble(new ChamberRecipeInput(inventory.getResource(INPUT_SLOT).toStack()));
 
         boolean outputSlotAmount = canInsertAmountIntoOutputSlot(output.getCount());
         boolean outputSlotItem = canInsertItemIntoOutputSlot(output);
 
-        boolean hasInput = inventory.getResource(INPUT_SLOT).is(Items.DRAGON_BREATH);
-        boolean hasDust = inventory.getResource(DUST_SLOT).is(EssentiaItems.ESSENCE_DUST.get());
-        boolean hasCrystal = inventory.getResource(CRYSTAL_SLOT).is(EssentiaItems.PRIMORDIAL_CRYSTAL.get());
+        return outputSlotAmount && outputSlotItem;
+    }
 
-        return hasInput && hasDust && hasCrystal && outputSlotAmount && outputSlotItem;
+    private Optional<RecipeHolder<ChamberRecipe>> getCurrentRecipe() {
+        return ((ServerLevel) level).recipeAccess()
+                .getRecipeFor(EssentiaRecipes.CHAMBER_TYPE.get(),
+                        new ChamberRecipeInput(inventory.getResource(INPUT_SLOT).toStack()), level);
     }
 
     private boolean canInsertItemIntoOutputSlot(ItemStack output) {

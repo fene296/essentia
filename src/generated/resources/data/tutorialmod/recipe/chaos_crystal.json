@@ -1,0 +1,7 @@
+{
+  "type": "essentia:chamber",
+  "ingredient": "minecraft:dragon_breath",
+  "result": {
+    "id": "essentia:chaos_essence_crystal"
+  }
+}

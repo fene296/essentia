@@ -4,6 +4,7 @@ import de.fene296.essentia.block.EssentiaBlocks;
 import de.fene296.essentia.block.entity.EssentiaBlockEntities;
 import de.fene296.essentia.creativemodeltab.EssentiaCreativeModeTabs;
 import de.fene296.essentia.item.EssentiaItems;
+import de.fene296.essentia.recipe.EssentiaRecipes;
 import de.fene296.essentia.screen.EssentiaMenuTypes;
 import org.slf4j.Logger;
 
@@ -42,6 +43,9 @@ public class Essentia {
 
         //Register Block-Entities
         EssentiaBlockEntities.register(modEventBus);
+
+        //Register Custom-Recipes
+        EssentiaRecipes.register(modEventBus);
 
         //Register Menus
         EssentiaMenuTypes.register(modEventBus);

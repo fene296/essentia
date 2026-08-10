@@ -1,12 +1,16 @@
 package de.fene296.essentia.datagen;
 
+import de.fene296.essentia.datagen.recipe.ChamberRecipeBuilder;
 import de.fene296.essentia.item.EssentiaItems;
+import de.fene296.essentia.recipe.ChamberRecipe;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.block.Blocks;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -41,5 +45,14 @@ public class EssentiaRecipeProvider extends RecipeProvider {
                 .unlockedBy(getHasName(Items.AMETHYST_SHARD), has(Items.AMETHYST_SHARD))
                 .group("essentia")
                 .save(output);
+
+
+        ChamberRecipeBuilder.crystallizerRecipe(RecipeCategory.MISC, Ingredient.of(Items.DRAGON_BREATH), EssentiaItems.CHAOS_ESSENCE_CRYSTAL)
+                .unlockedBy(getHasName(Items.DRAGON_BREATH), has(Items.DRAGON_BREATH))
+                .save(output, "tutorialmod:chaos_crystal");
+
+        ChamberRecipeBuilder.crystallizerRecipe(RecipeCategory.MISC, Ingredient.of(Blocks.DIRT), EssentiaItems.EARTH_ESSENCE_CRYSTAL)
+                .unlockedBy(getHasName(Blocks.DIRT), has(Blocks.DIRT))
+                .save(output, "tutorialmod:earth_crystal");
     }
 }
