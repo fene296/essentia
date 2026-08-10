@@ -18,6 +18,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -136,6 +137,8 @@ public class ChamberBlockEntity extends BlockEntity implements MenuProvider {
             ItemAccess itemAccess = ItemAccess.forHandlerIndex(inventory, OUTPUT_SLOT);
 
             inventory.extract(INPUT_SLOT, inventory.getResource(INPUT_SLOT), 1, transaction);
+            inventory.extract(DUST_SLOT, inventory.getResource(DUST_SLOT), 1, transaction);
+            inventory.extract(CRYSTAL_SLOT, inventory.getResource(CRYSTAL_SLOT), 1, transaction);
             inventory.set(OUTPUT_SLOT, ItemResource.of(output), itemAccess.getAmount() + output.getCount());
 
             transaction.commit();
@@ -161,9 +164,11 @@ public class ChamberBlockEntity extends BlockEntity implements MenuProvider {
         boolean outputSlotAmount = canInsertAmountIntoOutputSlot(output.getCount());
         boolean outputSlotItem = canInsertItemIntoOutputSlot(output);
 
-        boolean hasInput = inventory.getResource(INPUT_SLOT).is(EssentiaItems.PRIMORDIAL_CRYSTAL.get());
+        boolean hasInput = inventory.getResource(INPUT_SLOT).is(Items.DRAGON_BREATH);
+        boolean hasDust = inventory.getResource(DUST_SLOT).is(EssentiaItems.ESSENCE_DUST.get());
+        boolean hasCrystal = inventory.getResource(CRYSTAL_SLOT).is(EssentiaItems.PRIMORDIAL_CRYSTAL.get());
 
-        return hasInput && outputSlotAmount && outputSlotItem;
+        return hasInput && hasDust && hasCrystal && outputSlotAmount && outputSlotItem;
     }
 
     private boolean canInsertItemIntoOutputSlot(ItemStack output) {
