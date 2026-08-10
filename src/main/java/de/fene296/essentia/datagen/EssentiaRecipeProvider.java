@@ -51,7 +51,15 @@ public class EssentiaRecipeProvider extends RecipeProvider {
                         Ingredient.of(EssentiaItems.PRIMORDIAL_CRYSTAL.get()), 1,
                         EssentiaItems.EARTH_ESSENCE_CRYSTAL.get())
                 .unlockedBy(getHasName(Items.DIRT), has(Items.DIRT))
-                .save(output);
+                .save(output, "essentia:earth_essence_from_dirt");
+
+        ChamberRecipeBuilder.crystallizerRecipe(RecipeCategory.MISC,
+                        Ingredient.of(Items.CLAY_BALL), 2,
+                        Ingredient.of(EssentiaItems.ESSENCE_DUST.get()), 1,
+                        Ingredient.of(EssentiaItems.PRIMORDIAL_CRYSTAL.get()), 1,
+                        EssentiaItems.EARTH_ESSENCE_CRYSTAL.get())
+                .unlockedBy(getHasName(Items.CLAY_BALL), has(Items.CLAY_BALL))
+                .save(output, "essentia:earth_essence_from_clay");
 
         ChamberRecipeBuilder.crystallizerRecipe(RecipeCategory.MISC,
                         Ingredient.of(Items.DRAGON_BREATH), 1,
@@ -60,6 +68,6 @@ public class EssentiaRecipeProvider extends RecipeProvider {
                         EssentiaItems.CHAOS_ESSENCE_CRYSTAL.get())
                 .duration(200)
                 .unlockedBy(getHasName(Items.DRAGON_BREATH), has(Items.DRAGON_BREATH))
-                .save(output);
+                .save(output, "essentia:chaos_essence_from_dragon_breath");
     }
 }

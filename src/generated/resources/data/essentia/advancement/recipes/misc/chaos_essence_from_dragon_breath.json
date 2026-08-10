@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_dirt": {
+    "has_dragon_breath": {
       "conditions": {
         "items": [
           {
-            "items": "minecraft:dirt"
+            "items": "minecraft:dragon_breath"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "essentia:earth_essence_crystal"
+        "recipe": "essentia:chaos_essence_from_dragon_breath"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_dirt"
+      "has_dragon_breath"
     ]
   ],
   "rewards": {
     "recipes": [
-      "essentia:earth_essence_crystal"
+      "essentia:chaos_essence_from_dragon_breath"
     ]
   }
 }
