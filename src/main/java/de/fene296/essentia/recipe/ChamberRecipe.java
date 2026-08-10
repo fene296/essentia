@@ -14,7 +14,8 @@ public record ChamberRecipe(
         Ingredient resource, int resourceCount,
         Ingredient dust, int dustCount,
         Ingredient crystal, int crystalCount,
-        ItemStackTemplate output
+        ItemStackTemplate output,
+        int duration
 ) implements Recipe<ChamberRecipeInput> {
 
     public static final MapCodec<ChamberRecipe> CODEC = RecordCodecBuilder.mapCodec(instance ->
@@ -25,7 +26,8 @@ public record ChamberRecipe(
                     com.mojang.serialization.Codec.INT.optionalFieldOf("dustCount", 1).forGetter(ChamberRecipe::dustCount),
                     Ingredient.CODEC.fieldOf("crystal").forGetter(ChamberRecipe::crystal),
                     com.mojang.serialization.Codec.INT.optionalFieldOf("crystalCount", 1).forGetter(ChamberRecipe::crystalCount),
-                    ItemStackTemplate.CODEC.fieldOf("result").forGetter(ChamberRecipe::output)
+                    ItemStackTemplate.CODEC.fieldOf("result").forGetter(ChamberRecipe::output),
+                    com.mojang.serialization.Codec.INT.optionalFieldOf("duration", 72).forGetter(ChamberRecipe::duration)
             ).apply(instance, ChamberRecipe::new));
 
     public static final StreamCodec<RegistryFriendlyByteBuf, ChamberRecipe> STREAM_CODEC =
@@ -38,6 +40,7 @@ public record ChamberRecipe(
                         Ingredient.CONTENTS_STREAM_CODEC.encode(buf, recipe.crystal);
                         net.minecraft.network.codec.ByteBufCodecs.VAR_INT.encode(buf, recipe.crystalCount);
                         ItemStackTemplate.STREAM_CODEC.encode(buf, recipe.output);
+                        net.minecraft.network.codec.ByteBufCodecs.VAR_INT.encode(buf, recipe.duration);
                     },
                     (buf) -> {
                         Ingredient resource = Ingredient.CONTENTS_STREAM_CODEC.decode(buf);
@@ -47,7 +50,8 @@ public record ChamberRecipe(
                         Ingredient crystal = Ingredient.CONTENTS_STREAM_CODEC.decode(buf);
                         int crystalCount = net.minecraft.network.codec.ByteBufCodecs.VAR_INT.decode(buf);
                         ItemStackTemplate output = ItemStackTemplate.STREAM_CODEC.decode(buf);
-                        return new ChamberRecipe(resource, resourceCount, dust, dustCount, crystal, crystalCount, output);
+                        int duration = net.minecraft.network.codec.ByteBufCodecs.VAR_INT.decode(buf);
+                        return new ChamberRecipe(resource, resourceCount, dust, dustCount, crystal, crystalCount, output, duration);
                     }
             );
 

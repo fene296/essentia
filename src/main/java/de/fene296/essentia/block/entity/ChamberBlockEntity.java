@@ -121,6 +121,8 @@ public class ChamberBlockEntity extends BlockEntity implements MenuProvider {
     }
 
     public void tick(Level level, BlockPos pos, BlockState state) {
+        getCurrentRecipe().ifPresent(recipeHolder -> maxProgress = recipeHolder.value().duration());
+
         if(hasRecipe() && isOutputSlotEmptyOrReceivable()) {
             increaseCratingProgress();
             setChanged(level, pos, state);

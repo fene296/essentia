@@ -58,6 +58,7 @@ public class EssentiaRecipeProvider extends RecipeProvider {
                         Ingredient.of(EssentiaItems.ESSENCE_DUST.get()), 1,
                         Ingredient.of(EssentiaItems.PRIMORDIAL_CRYSTAL.get()), 1,
                         EssentiaItems.CHAOS_ESSENCE_CRYSTAL.get())
+                .duration(200)
                 .unlockedBy(getHasName(Items.DRAGON_BREATH), has(Items.DRAGON_BREATH))
                 .save(output);
     }

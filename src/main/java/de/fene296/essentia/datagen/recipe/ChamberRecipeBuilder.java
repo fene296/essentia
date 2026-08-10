@@ -26,6 +26,8 @@ public class ChamberRecipeBuilder implements RecipeBuilder {
     private final Ingredient crystal;
     private final int crystalCount;
 
+    private int duration = 72;
+
     private final RecipeUnlockAdvancementBuilder advancementBuilder = new RecipeUnlockAdvancementBuilder();
     private @Nullable String group;
 
@@ -72,6 +74,11 @@ public class ChamberRecipeBuilder implements RecipeBuilder {
         return this;
     }
 
+    public ChamberRecipeBuilder duration(int duration) {
+        this.duration = duration;
+        return this;
+    }
+
     @Override
     public ResourceKey<Recipe<?>> defaultId() {
         return RecipeBuilder.getDefaultRecipeId(this.result);
@@ -79,7 +86,7 @@ public class ChamberRecipeBuilder implements RecipeBuilder {
 
     @Override
     public void save(RecipeOutput output, ResourceKey<Recipe<?>> id) {
-        ChamberRecipe recipe = new ChamberRecipe(resource, resourceCount, dust, dustCount, crystal, crystalCount, this.result);
+        ChamberRecipe recipe = new ChamberRecipe(resource, resourceCount, dust, dustCount, crystal, crystalCount, this.result, duration);
         output.accept(id, recipe, this.advancementBuilder.build(output, id, this.category));
     }
 }
