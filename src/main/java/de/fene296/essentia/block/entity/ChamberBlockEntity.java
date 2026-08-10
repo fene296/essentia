@@ -127,6 +127,16 @@ public class ChamberBlockEntity extends BlockEntity implements MenuProvider {
             increaseCratingProgress();
             setChanged(level, pos, state);
 
+            if (level instanceof ServerLevel serverLevel) {
+                serverLevel.sendParticles(
+                        net.minecraft.core.particles.ParticleTypes.PORTAL,
+                        pos.getX() + 0.5, pos.getY() + 1.1, pos.getZ() + 0.5,
+                        3,
+                        0.3, 0.2, 0.3,
+                        0.02
+                );
+            }
+
             if(hasCraftingFinished()) {
                 craftItem();
                 resetProgress();
