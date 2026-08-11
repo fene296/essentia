@@ -62,14 +62,8 @@ public class EssenceExtractorMenu extends AbstractContainerMenu {
         // Dust slot (slot 1): same as above, unrestricted at the slot level.
         this.addSlot(new ResourceHandlerSlot(handler, handler::set,1, 19,  52));
 
-        // Crystal slot (slot 2): restricted so only Primordial Crystal can be placed here,
-        // regardless of what any recipe might otherwise accept.
-        this.addSlot(new ResourceHandlerSlot(handler, handler::set,2, 67,  52) {
-            @Override
-            public boolean mayPlace(ItemStack stack) {
-                return stack.is(EssentiaItems.PRIMORDIAL_CRYSTAL.get());
-            }
-        });
+        // Crystal slot (slot 2): same as above, unrestricted at the slot level.
+        this.addSlot(new ResourceHandlerSlot(handler, handler::set,2, 67,  52));
 
         // Output slot (slot 3): players can only take items out, never place items in
         // directly - it's only ever filled by the crafting logic itself.

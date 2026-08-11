@@ -51,29 +51,31 @@ public class EssentiaRecipeProvider extends RecipeProvider {
 
     private void essenceExtractorRecipes() {
         EssenceExtractorRecipeBuilder.extractRecipe(RecipeCategory.MISC,
-                        Ingredient.of(Items.DIRT), 4,
-                        Ingredient.of(EssentiaItems.ESSENCE_DUST.get()), 1,
-                        Ingredient.of(EssentiaItems.PRIMORDIAL_CRYSTAL.get()), 1,
-                        EssentiaItems.EARTH_ESSENCE_CRYSTAL.get())
+                        Items.DIRT, 4,
+                        EssentiaItems.EARTH_ESSENCE_CRYSTAL.get(), 1)
                 .unlockedBy(getHasName(Items.DIRT), has(Items.DIRT))
-                .save(output, "essentia:earth_essence_from_dirt");
+                .save(output, "essentia:essence_extractor/earth_essence_from_dirt");
 
         EssenceExtractorRecipeBuilder.extractRecipe(RecipeCategory.MISC,
-                        Ingredient.of(Items.CLAY_BALL), 2,
-                        Ingredient.of(EssentiaItems.ESSENCE_DUST.get()), 1,
-                        Ingredient.of(EssentiaItems.PRIMORDIAL_CRYSTAL.get()), 1,
-                        EssentiaItems.EARTH_ESSENCE_CRYSTAL.get())
+                        Items.CLAY_BALL, 2,
+                        EssentiaItems.EARTH_ESSENCE_CRYSTAL.get(), 1)
                 .unlockedBy(getHasName(Items.CLAY_BALL), has(Items.CLAY_BALL))
-                .save(output, "essentia:earth_essence_from_clay");
+                .save(output, "essentia:essence_extractor/earth_essence_from_clay");
 
         EssenceExtractorRecipeBuilder.extractRecipe(RecipeCategory.MISC,
-                        Ingredient.of(Items.DRAGON_BREATH), 1,
-                        Ingredient.of(EssentiaItems.ESSENCE_DUST.get()), 1,
-                        Ingredient.of(EssentiaItems.PRIMORDIAL_CRYSTAL.get()), 1,
-                        EssentiaItems.CHAOS_ESSENCE_CRYSTAL.get())
+                        Items.DRAGON_BREATH, 1,
+                        EssentiaItems.CHAOS_ESSENCE_CRYSTAL.get(), 1)
                 .duration(200)
                 .unlockedBy(getHasName(Items.DRAGON_BREATH), has(Items.DRAGON_BREATH))
-                .save(output, "essentia:chaos_essence_from_dragon_breath");
+                .save(output, "essentia:essence_extractor/chaos_essence_from_dragon_breath");
+
+        EssenceExtractorRecipeBuilder.extractRecipe(RecipeCategory.MISC,
+                Items.BLAZE_ROD, 1,
+                EssentiaItems.LIGHT_ESSENCE_CRYSTAL, 1)
+                .dust(Items.GLOWSTONE_DUST, 2)
+                .crystal(Items.QUARTZ, 1)
+                .unlockedBy(getHasName(Items.CLAY_BALL), has(Items.CLAY_BALL))
+                .save(output, "essentia:essence_extractor/light_essence_from_blaze_rod");
 
     }
 }
