@@ -1,5 +1,7 @@
 package de.fene296.essentia;
 
+import de.fene296.essentia.screen.EssentiaMenuTypes;
+import de.fene296.essentia.screen.custom.essence_extractor.EssenceExtractorScreen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.neoforged.api.distmarker.Dist;
@@ -8,6 +10,7 @@ import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.client.gui.ConfigurationScreen;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 
@@ -28,5 +31,11 @@ public class EssentiaClient {
         // Some client setup code
         Essentia.LOGGER.info("HELLO FROM CLIENT SETUP");
         Essentia.LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
+    }
+
+    //Register Screens
+    @SubscribeEvent
+    public static void registerScreens(RegisterMenuScreensEvent event) {
+        event.register(EssentiaMenuTypes.ESSENCE_EXTRACTOR_MENU.get(), EssenceExtractorScreen::new);
     }
 }
