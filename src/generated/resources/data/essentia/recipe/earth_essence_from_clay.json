@@ -1,0 +1,10 @@
+{
+  "type": "essentia:essence_extractor",
+  "crystal": "essentia:primordial_crystal",
+  "dust": "essentia:essence_dust",
+  "resource": "minecraft:clay_ball",
+  "resourceCount": 2,
+  "result": {
+    "id": "essentia:earth_essence_crystal"
+  }
+}

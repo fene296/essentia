@@ -1,0 +1,10 @@
+{
+  "type": "essentia:essence_extractor",
+  "crystal": "essentia:primordial_crystal",
+  "duration": 200,
+  "dust": "essentia:essence_dust",
+  "resource": "minecraft:dragon_breath",
+  "result": {
+    "id": "essentia:chaos_essence_crystal"
+  }
+}
