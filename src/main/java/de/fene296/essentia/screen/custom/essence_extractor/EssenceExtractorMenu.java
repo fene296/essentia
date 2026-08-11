@@ -4,6 +4,7 @@ import de.fene296.essentia.block.EssentiaBlocks;
 import de.fene296.essentia.block.entity.EssenceExtractorEntity;
 import de.fene296.essentia.item.EssentiaItems;
 import de.fene296.essentia.screen.EssentiaMenuTypes;
+import de.fene296.essentia.tags.EssentiaTags;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -59,8 +60,14 @@ public class EssenceExtractorMenu extends AbstractContainerMenu {
         // extra restriction here beyond what the recipe itself checks at craft time.
         this.addSlot(new ResourceHandlerSlot(handler, handler::set,0, 43,  17));
 
-        // Dust slot (slot 1): same as above, unrestricted at the slot level.
-        this.addSlot(new ResourceHandlerSlot(handler, handler::set,1, 19,  52));
+        // Dust slot (slot 1): restricted to only accept items tagged as "magic dust"
+        // (e.g. Essence Dust and any other magical-dust-type items added to that tag later)
+        this.addSlot(new ResourceHandlerSlot(handler, handler::set,1, 19,  52) {
+            @Override
+            public boolean mayPlace(ItemStack stack) {
+                return stack.is(EssentiaTags.Items.MAGIC_DUST);
+            }
+        });
 
         // Crystal slot (slot 2): same as above, unrestricted at the slot level.
         this.addSlot(new ResourceHandlerSlot(handler, handler::set,2, 67,  52));
