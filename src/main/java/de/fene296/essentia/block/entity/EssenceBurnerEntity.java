@@ -169,6 +169,15 @@ public class EssenceBurnerEntity extends BlockEntity implements MenuProvider {
      * worth revisiting (e.g. caching) if that becomes a problem.
      */
     public static boolean isTypeActiveNearby(Level level, BlockPos pos, EssenceType requiredType) {
+        return findActiveNearby(level, pos, requiredType).isPresent();
+    }
+
+    /**
+     * Same search as {@link #isTypeActiveNearby}, but returns the position of the
+     * matching burner (if found) instead of just a boolean - useful for reporting
+     * back to the player, debugging, etc.
+     */
+    public static java.util.Optional<BlockPos> findActiveNearby(Level level, BlockPos pos, EssenceType requiredType) {
         BlockPos min = pos.offset(-RANGE, -RANGE, -RANGE);
         BlockPos max = pos.offset(RANGE, RANGE, RANGE);
 
@@ -176,10 +185,10 @@ public class EssenceBurnerEntity extends BlockEntity implements MenuProvider {
             if (level.getBlockEntity(checkPos) instanceof EssenceBurnerEntity burner
                     && burner.isActive()
                     && burner.getActiveType() == requiredType) {
-                return true;
+                return java.util.Optional.of(checkPos.immutable());
             }
         }
-        return false;
+        return java.util.Optional.empty();
     }
 
     @Override

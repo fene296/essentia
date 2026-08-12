@@ -2,10 +2,12 @@ package de.fene296.essentia;
 
 import de.fene296.essentia.block.EssentiaBlockEntities;
 import de.fene296.essentia.block.EssentiaBlocks;
+import de.fene296.essentia.command.EssentiaCommands;
 import de.fene296.essentia.creativemodeltab.EssentiaCreativeModeTabs;
 import de.fene296.essentia.item.EssentiaItems;
 import de.fene296.essentia.recipe.EssentiaRecipes;
 import de.fene296.essentia.screen.EssentiaMenuTypes;
+import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -59,7 +61,10 @@ public class Essentia {
     }
 
     @SubscribeEvent
-    public void onServerStarting(ServerStartingEvent event) {
+    public void onServerStarting(ServerStartingEvent event) {    }
 
+    @SubscribeEvent
+    public void onRegisterCommands(RegisterCommandsEvent event) {
+        EssentiaCommands.register(event.getDispatcher());
     }
 }
