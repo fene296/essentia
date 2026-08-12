@@ -1,0 +1,10 @@
+{
+  "type": "essentia:essence_extractor",
+  "crystal": "minecraft:quartz",
+  "dust": "minecraft:glowstone_dust",
+  "dustCount": 2,
+  "resource": "minecraft:blaze_rod",
+  "result": {
+    "id": "essentia:light_essence_crystal"
+  }
+}

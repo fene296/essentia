@@ -23,7 +23,8 @@ public class EssentiaBlockTagsProvider extends BlockTagsProvider {
                 .add(EssentiaBlocks.getResourceKey(EssentiaBlocks.SMALL_PRIMORDIAL_BUD.get()))
                 .add(EssentiaBlocks.getResourceKey(EssentiaBlocks.MEDIUM_PRIMORDIAL_BUD.get()))
                 .add(EssentiaBlocks.getResourceKey(EssentiaBlocks.LARGE_PRIMORDIAL_BUD.get()))
-                .add(EssentiaBlocks.getResourceKey(EssentiaBlocks.PRIMORDIAL_CLUSTER.get()));
+                .add(EssentiaBlocks.getResourceKey(EssentiaBlocks.PRIMORDIAL_CLUSTER.get()))
+                .add(EssentiaBlocks.getResourceKey(EssentiaBlocks.ESSENCE_EXTRACTOR.get()));
 
         tag(BlockTags.NEEDS_DIAMOND_TOOL)
                 .add(EssentiaBlocks.getResourceKey(EssentiaBlocks.BUDDING_PRIMORDIAL.get()))

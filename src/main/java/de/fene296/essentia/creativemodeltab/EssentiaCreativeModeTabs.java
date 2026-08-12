@@ -33,6 +33,7 @@ public class EssentiaCreativeModeTabs {
 
                 output.accept(EssentiaBlocks.BUDDING_PRIMORDIAL);
                 output.accept(EssentiaBlocks.DAMAGED_BUDDING_PRIMORDIAL);
+                output.accept(EssentiaBlocks.ESSENCE_EXTRACTOR);
 
                 output.accept(EssentiaBlocks.SMALL_PRIMORDIAL_BUD);
                 output.accept(EssentiaBlocks.MEDIUM_PRIMORDIAL_BUD);

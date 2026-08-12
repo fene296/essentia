@@ -3,6 +3,7 @@ package de.fene296.essentia.block;
 import de.fene296.essentia.Essentia;
 import de.fene296.essentia.block.custom.BuddingPrimordial;
 import de.fene296.essentia.block.custom.DamagedBuddingPrimordial;
+import de.fene296.essentia.block.custom.EssenceExtractor;
 import de.fene296.essentia.item.EssentiaItems;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceKey;
@@ -30,6 +31,12 @@ public class EssentiaBlocks {
             "damaged_budding_primordial",
             properties -> new DamagedBuddingPrimordial(properties.strength(5f).requiresCorrectToolForDrops().sound(SoundType.AMETHYST).randomTicks())
     );
+
+    public static final DeferredBlock<EssenceExtractor> ESSENCE_EXTRACTOR = registerBlock(
+            "essence_extractor",
+            properties -> new EssenceExtractor(properties.strength(5f).requiresCorrectToolForDrops().sound(SoundType.STONE))
+    );
+
 
     public static final DeferredBlock<AmethystClusterBlock> SMALL_PRIMORDIAL_BUD = registerBlock("small_primordial_bud",
             properties -> new AmethystClusterBlock(3,8, budProperties(properties)));
