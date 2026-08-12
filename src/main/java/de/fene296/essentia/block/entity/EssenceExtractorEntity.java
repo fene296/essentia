@@ -56,6 +56,10 @@ public class EssenceExtractorEntity extends BlockEntity implements MenuProvider 
         protected void onContentsChanged(int index, ItemStack previousContents) {
             super.onContentsChanged(index, previousContents);
             EssenceExtractorEntity.this.setChanged();
+
+            if (level != null && !level.isClientSide()) {
+                level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 3);
+            }
         }
     };
 
