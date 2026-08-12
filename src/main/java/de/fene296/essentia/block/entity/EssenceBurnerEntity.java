@@ -5,11 +5,13 @@ import de.fene296.essentia.screen.custom.essence_burner.EssenceBurnerMenu;
 import de.fene296.essentia.util.EssenceType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleContainer;
@@ -107,8 +109,29 @@ public class EssenceBurnerEntity extends BlockEntity implements MenuProvider {
                 activeTypeOrdinal = -1;
             }
             setChanged();
+
+            spawnActiveParticles(level, pos);
         } else {
             tryStartBurning();
+        }
+    }
+
+    /**
+     * Spawns a thin vertical stream of particles above the burner, colored to match
+     * the currently active {@link EssenceType} (see {@link EssenceType#getColor()}).
+     */
+    private void spawnActiveParticles(Level level, BlockPos pos) {
+        EssenceType type = getActiveType();
+        if (type == null || !(level instanceof ServerLevel serverLevel)) {
+            return;
+        }
+
+        DustParticleOptions particleOptions = new DustParticleOptions(type.getColor(), 1.0f);
+
+        double x = pos.getX() + 0.5;
+        double z = pos.getZ() + 0.5;
+        for (double y = pos.getY() + 1.0; y <= pos.getY() + 1.5; y += 0.15) {
+            serverLevel.sendParticles(particleOptions, x, y, z, 1, 0.0, 0.0, 0.0, 0.0);
         }
     }
 

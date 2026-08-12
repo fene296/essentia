@@ -17,7 +17,7 @@ public class EssentiaMenuTypes {
 
     public static final DeferredHolder<MenuType<?>, MenuType<EssenceExtractorMenu>> ESSENCE_EXTRACTOR_MENU = registerMenuType("essence_extractor_menu", EssenceExtractorMenu::new);
 
-    public static final DeferredHolder<MenuType<?>, MenuType<EssenceBurnerMenu>> ESSENCE_BURNER_MENU = registerMenuType("essence_extractor_menu", EssenceBurnerMenu::new);
+    public static final DeferredHolder<MenuType<?>, MenuType<EssenceBurnerMenu>> ESSENCE_BURNER_MENU = registerMenuType("essence_burner_menu", EssenceBurnerMenu::new);
 
     private static <T extends AbstractContainerMenu>DeferredHolder<MenuType<?>, MenuType<T>> registerMenuType(String name, IContainerFactory<T> factory) {
         return MENUS.register(name, () -> IMenuTypeExtension.create(factory));

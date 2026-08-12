@@ -20,9 +20,7 @@ public class EssenceBurnerScreen extends AbstractContainerScreen<EssenceBurnerMe
     private static final Identifier GUI_TEXTURE =
             Identifier.fromNamespaceAndPath(Essentia.MODID, "textures/gui/essence_burner/essence_burner.png");
 
-    // NOTE: no dedicated flame texture exists yet - reusing the extractor's progress
-    // strip as a placeholder. Swap this out once a proper flame icon texture exists
-    // (traditionally a 14x14-ish icon that gets clipped from full to empty vertically).
+
     private static final Identifier FLAME_TEXTURE =
             Identifier.fromNamespaceAndPath(Essentia.MODID, "textures/gui/burn_progress.png");
 
@@ -56,7 +54,7 @@ public class EssenceBurnerScreen extends AbstractContainerScreen<EssenceBurnerMe
             int flameHeight = menu.getScaledBurnProgress(FLAME_HEIGHT);
             guiGraphics.blit(RenderPipelines.GUI_TEXTURED, FLAME_TEXTURE,
                     x + 81, y + 48 + (FLAME_HEIGHT - flameHeight), 0, FLAME_HEIGHT - flameHeight,
-                    16, flameHeight, 24, 16);
+                    14, flameHeight, 14, 14);
         }
     }
 }

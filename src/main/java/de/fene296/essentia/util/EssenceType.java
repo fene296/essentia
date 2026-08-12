@@ -8,23 +8,30 @@ import java.util.Arrays;
 import java.util.Optional;
 
 public enum EssenceType {
-    EARTH(EssentiaItems.EARTH_ESSENCE_CRYSTAL),
-    SOUL(EssentiaItems.SOUL_ESSENCE_CRYSTAL),
-    LIGHT(EssentiaItems.LIGHT_ESSENCE_CRYSTAL),
-    SHADOW(EssentiaItems.SHADOW_ESSENCE_CRYSTAL),
-    ARCANE(EssentiaItems.ARCANE_ESSENCE_CRYSTAL),
-    TIME(EssentiaItems.TIME_ESSENCE_CRYSTAL),
-    AETHER(EssentiaItems.AETHER_ESSENCE_CRYSTAL),
-    CHAOS(EssentiaItems.CHAOS_ESSENCE_CRYSTAL);
+    EARTH(EssentiaItems.EARTH_ESSENCE_CRYSTAL, 0x4ADD5D),
+    SOUL(EssentiaItems.SOUL_ESSENCE_CRYSTAL, 0x068388),
+    LIGHT(EssentiaItems.LIGHT_ESSENCE_CRYSTAL, 0xF5E032),
+    SHADOW(EssentiaItems.SHADOW_ESSENCE_CRYSTAL, 0x22024C),
+    ARCANE(EssentiaItems.ARCANE_ESSENCE_CRYSTAL, 0x9C31BE),
+    TIME(EssentiaItems.TIME_ESSENCE_CRYSTAL, 0x748C89),
+    AETHER(EssentiaItems.AETHER_ESSENCE_CRYSTAL, 0x00F9FF),
+    CHAOS(EssentiaItems.CHAOS_ESSENCE_CRYSTAL, 0xFF5900);
 
     private final DeferredItem<Item> crystalItem;
+    private final int color;
 
-    EssenceType(DeferredItem<Item> crystalItem) {
+    EssenceType(DeferredItem<Item> crystalItem, int color) {
         this.crystalItem = crystalItem;
+        this.color = color;
     }
 
     public Item getCrystalItem() {
         return crystalItem.get();
+    }
+
+    /** Packed RGB color (0xRRGGBB) used for this essence type's particle effects. */
+    public int getColor() {
+        return color;
     }
 
     /**
