@@ -1,6 +1,7 @@
 package de.fene296.essentia.block.entity;
 
 import de.fene296.essentia.block.EssentiaBlockEntities;
+import de.fene296.essentia.screen.custom.essence_burner.EssenceBurnerMenu;
 import de.fene296.essentia.util.EssenceType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
@@ -19,7 +20,6 @@ import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
@@ -88,7 +88,7 @@ public class EssenceBurnerEntity extends BlockEntity implements MenuProvider {
 
     @Override
     public @Nullable AbstractContainerMenu createMenu(int i, Inventory inventory, Player player) {
-        return null;
+        return new EssenceBurnerMenu(i, inventory, this, this.inventory, this.data);
     }
 
     public void drops() {

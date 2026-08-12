@@ -3,6 +3,8 @@ package de.fene296.essentia;
 import de.fene296.essentia.block.EssentiaBlockEntities;
 import de.fene296.essentia.block.entity.renderer.essence_extractor.EssenceExtractorEntityRenderer;
 import de.fene296.essentia.screen.EssentiaMenuTypes;
+import de.fene296.essentia.screen.custom.essence_burner.EssenceBurnerMenu;
+import de.fene296.essentia.screen.custom.essence_burner.EssenceBurnerScreen;
 import de.fene296.essentia.screen.custom.essence_extractor.EssenceExtractorScreen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.MenuScreens;
@@ -45,5 +47,6 @@ public class EssentiaClient {
     @SubscribeEvent
     public static void registerScreens(RegisterMenuScreensEvent event) {
         event.register(EssentiaMenuTypes.ESSENCE_EXTRACTOR_MENU.get(), EssenceExtractorScreen::new);
+        event.register(EssentiaMenuTypes.ESSENCE_BURNER_MENU.get(), EssenceBurnerScreen::new);
     }
 }
