@@ -1,6 +1,7 @@
 package de.fene296.essentia.block;
 
 import de.fene296.essentia.Essentia;
+import de.fene296.essentia.block.entity.EssenceBurnerEntity;
 import de.fene296.essentia.block.entity.EssenceExtractorEntity;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -27,6 +28,9 @@ public class EssentiaBlockEntities {
 
     public static final Supplier<BlockEntityType<EssenceExtractorEntity>> ESSENCE_EXTRACTOR_BE = BLOCK_ENTITIES.register("essence_extractor_be",
             () -> new BlockEntityType<>(EssenceExtractorEntity::new, EssentiaBlocks.ESSENCE_EXTRACTOR.get()));
+
+    public static final Supplier<BlockEntityType<EssenceBurnerEntity>> ESSENCE_BURNER_BE = BLOCK_ENTITIES.register("essence_burner_be",
+            () -> new BlockEntityType<>(EssenceBurnerEntity::new, EssentiaBlocks.ESSENCE_BURNER.get()));
 
 
     public static void register(IEventBus eventBus) {

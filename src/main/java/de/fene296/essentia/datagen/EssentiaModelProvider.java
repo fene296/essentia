@@ -33,6 +33,8 @@ public class EssentiaModelProvider extends ModelProvider {
         blockModels.createTrivialCube(EssentiaBlocks.BUDDING_PRIMORDIAL.get());
         blockModels.createTrivialCube(EssentiaBlocks.DAMAGED_BUDDING_PRIMORDIAL.get());
 
+        blockModels.createTrivialCube(EssentiaBlocks.ESSENCE_BURNER.get());
+
         //AmethystCluster
         blockModels.createAmethystCluster(EssentiaBlocks.SMALL_PRIMORDIAL_BUD.get());
         blockModels.createAmethystCluster(EssentiaBlocks.MEDIUM_PRIMORDIAL_BUD.get());
