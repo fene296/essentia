@@ -24,6 +24,7 @@ import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.ValueInput;
@@ -76,10 +77,14 @@ public class EssenceExtractorEntity extends BlockEntity implements MenuProvider 
      */
     protected final ContainerData data;
 
-    /** How many ticks the current craft has been running for. */
+    /**
+     * How many ticks the current craft has been running for.
+     */
     private int progress = 0;
 
-    /** How many ticks the current recipe needs in total (defaults to 72 = 3.6s if no recipe is active). */
+    /**
+     * How many ticks the current recipe needs in total (defaults to 72 = 3.6s if no recipe is active).
+     */
     private int maxProgress = 72;
 
     public EssenceExtractorEntity(BlockPos worldPosition, BlockState blockState) {
@@ -109,7 +114,9 @@ public class EssenceExtractorEntity extends BlockEntity implements MenuProvider 
         };
     }
 
-    /** Display name shown in the GUI's title bar. */
+    /**
+     * Display name shown in the GUI's title bar.
+     */
     @Override
     public Component getDisplayName() {
         return Component.translatable("block.essentia.essence_extractor");
@@ -139,7 +146,9 @@ public class EssenceExtractorEntity extends BlockEntity implements MenuProvider 
         Containers.dropContents(this.level, this.worldPosition, inv);
     }
 
-    /** Writes progress + the full inventory contents to the block entity's save data (NBT). */
+    /**
+     * Writes progress + the full inventory contents to the block entity's save data (NBT).
+     */
     @Override
     protected void saveAdditional(ValueOutput output) {
         super.saveAdditional(output);
@@ -149,7 +158,9 @@ public class EssenceExtractorEntity extends BlockEntity implements MenuProvider 
         output.putChild("inventory", inventory);
     }
 
-    /** Restores progress + inventory contents from saved data (NBT) when the chunk loads. */
+    /**
+     * Restores progress + inventory contents from saved data (NBT) when the chunk loads.
+     */
     @Override
     protected void loadAdditional(ValueInput input) {
         super.loadAdditional(input);
@@ -171,21 +182,15 @@ public class EssenceExtractorEntity extends BlockEntity implements MenuProvider 
     public void tick(Level level, BlockPos pos, BlockState state) {
         getCurrentRecipe().ifPresent(recipeHolder -> maxProgress = recipeHolder.value().duration());
 
-        if(hasRecipe() && isOutputSlotEmptyOrReceivable()) {
+        if (hasRecipe() && isOutputSlotEmptyOrReceivable()) {
             increaseCratingProgress();
             setChanged(level, pos, state);
 
             if (level instanceof ServerLevel serverLevel) {
-                serverLevel.sendParticles(
-                        net.minecraft.core.particles.ParticleTypes.PORTAL,
-                        pos.getX() + 0.5, pos.getY() + 1.1, pos.getZ() + 0.5,
-                        3,
-                        0.3, 0.2, 0.3,
-                        0.02
-                );
+                showParticles(serverLevel, pos);
             }
 
-            if(hasCraftingFinished()) {
+            if (hasCraftingFinished()) {
                 craftItem();
                 resetProgress();
             }
@@ -194,7 +199,19 @@ public class EssenceExtractorEntity extends BlockEntity implements MenuProvider 
         }
     }
 
-    /** True if the output slot is empty, or has room for more of its current item. */
+    private void showParticles(ServerLevel serverLevel, BlockPos pos) {
+        serverLevel.sendParticles(
+                net.minecraft.core.particles.ParticleTypes.PORTAL,
+                pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5,
+                1,
+                0.0, 0.0, 0.0,
+                0.1
+        );
+    }
+
+    /**
+     * True if the output slot is empty, or has room for more of its current item.
+     */
     private boolean isOutputSlotEmptyOrReceivable() {
         return inventory.getResource(OUTPUT_SLOT).isEmpty() ||
                 inventory.getResource(OUTPUT_SLOT).test(stack -> stack.count() < stack.getMaxStackSize());
@@ -211,7 +228,7 @@ public class EssenceExtractorEntity extends BlockEntity implements MenuProvider 
         EssenceExtractorRecipe value = recipe.get().value();
         ItemStack output = value.assemble(currentInput());
 
-        try(Transaction transaction = Transaction.openRoot()) {
+        try (Transaction transaction = Transaction.openRoot()) {
             ItemAccess itemAccess = ItemAccess.forHandlerIndex(inventory, OUTPUT_SLOT);
 
             inventory.extract(INPUT_SLOT, inventory.getResource(INPUT_SLOT), value.resourceCount(), transaction);
@@ -223,13 +240,17 @@ public class EssenceExtractorEntity extends BlockEntity implements MenuProvider 
         }
     }
 
-    /** Resets crafting progress, e.g. after finishing a craft or when ingredients go missing. */
+    /**
+     * Resets crafting progress, e.g. after finishing a craft or when ingredients go missing.
+     */
     private void resetProgress() {
         progress = 0;
         maxProgress = 72;
     }
 
-    /** True once enough ticks have passed to finish the current craft. */
+    /**
+     * True once enough ticks have passed to finish the current craft.
+     */
     private boolean hasCraftingFinished() {
         return this.progress >= this.maxProgress;
     }
@@ -244,7 +265,7 @@ public class EssenceExtractorEntity extends BlockEntity implements MenuProvider 
      */
     private boolean hasRecipe() {
         Optional<RecipeHolder<EssenceExtractorRecipe>> recipe = getCurrentRecipe();
-        if(recipe.isEmpty()) {
+        if (recipe.isEmpty()) {
             return false;
         }
 
@@ -273,19 +294,25 @@ public class EssenceExtractorEntity extends BlockEntity implements MenuProvider 
         );
     }
 
-    /** Looks up the currently-matching recipe (if any) from the server's recipe manager. */
+    /**
+     * Looks up the currently-matching recipe (if any) from the server's recipe manager.
+     */
     private Optional<RecipeHolder<EssenceExtractorRecipe>> getCurrentRecipe() {
         return ((ServerLevel) level).recipeAccess()
                 .getRecipeFor(EssentiaRecipes.ESSENCE_EXTRACTOR_TYPE.get(), currentInput(), level);
     }
 
-    /** True if the output slot is empty, or already holds the same item as the given result. */
+    /**
+     * True if the output slot is empty, or already holds the same item as the given result.
+     */
     private boolean canInsertItemIntoOutputSlot(ItemStack output) {
         return inventory.getResource(OUTPUT_SLOT).isEmpty() ||
                 inventory.getResource(OUTPUT_SLOT).is(output.getItem());
     }
 
-    /** True if adding `count` more items to the output slot wouldn't exceed its max stack size. */
+    /**
+     * True if adding `count` more items to the output slot wouldn't exceed its max stack size.
+     */
     private boolean canInsertAmountIntoOutputSlot(int count) {
         int maxCount = inventory.getResource(OUTPUT_SLOT).isEmpty() ? 64 : inventory.getResource(OUTPUT_SLOT).getMaxStackSize();
         int currentCount = inventory.getAmountAsInt(OUTPUT_SLOT);
@@ -296,14 +323,18 @@ public class EssenceExtractorEntity extends BlockEntity implements MenuProvider 
 
     /* BLOCK ENTITY SYNC */
 
-    /** Packet sent to nearby clients whenever this block entity's data changes (e.g. slot contents). */
+    /**
+     * Packet sent to nearby clients whenever this block entity's data changes (e.g. slot contents).
+     */
     @Nullable
     @Override
     public Packet<ClientGamePacketListener> getUpdatePacket() {
         return ClientboundBlockEntityDataPacket.create(this);
     }
 
-    /** NBT payload used for the initial sync when a chunk containing this block entity loads for a client. */
+    /**
+     * NBT payload used for the initial sync when a chunk containing this block entity loads for a client.
+     */
     @Override
     public CompoundTag getUpdateTag(HolderLookup.Provider pRegistries) {
         return saveWithoutMetadata(pRegistries);
