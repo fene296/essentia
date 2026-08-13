@@ -22,5 +22,15 @@ public class EssentiaItemTagsProvider extends ItemTagsProvider {
         tag(EssentiaTags.Items.MAGIC_DUST)
                 .add(EssentiaItems.getResourceKey(EssentiaItems.ESSENCE_DUST.get()))
                 .add(ItemIds.GLOWSTONE_DUST);
+
+        tag(EssentiaTags.Items.ESSENCE_CRYSTAL)
+                .add(EssentiaItems.getResourceKey(EssentiaItems.ARCANE_ESSENCE_CRYSTAL.get()))
+                .add(EssentiaItems.getResourceKey(EssentiaItems.SOUL_ESSENCE_CRYSTAL.get()))
+                .add(EssentiaItems.getResourceKey(EssentiaItems.EARTH_ESSENCE_CRYSTAL.get()))
+                .add(EssentiaItems.getResourceKey(EssentiaItems.CHAOS_ESSENCE_CRYSTAL.get()))
+                .add(EssentiaItems.getResourceKey(EssentiaItems.AETHER_ESSENCE_CRYSTAL.get()))
+                .add(EssentiaItems.getResourceKey(EssentiaItems.LIGHT_ESSENCE_CRYSTAL.get()))
+                .add(EssentiaItems.getResourceKey(EssentiaItems.SHADOW_ESSENCE_CRYSTAL.get()))
+                .add(EssentiaItems.getResourceKey(EssentiaItems.TIME_ESSENCE_CRYSTAL.get()));
     }
 }

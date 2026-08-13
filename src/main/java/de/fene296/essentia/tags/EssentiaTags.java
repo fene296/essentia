@@ -19,6 +19,7 @@ public class EssentiaTags {
     public static class Items {
 
         public static final TagKey<Item> MAGIC_DUST = createTag("magic_dust");
+        public static final TagKey<Item> ESSENCE_CRYSTAL = createTag("essence_crystal");
 
         private static TagKey<Item> createTag(String name) {
             return ItemTags.create(Identifier.fromNamespaceAndPath(Essentia.MODID, name));

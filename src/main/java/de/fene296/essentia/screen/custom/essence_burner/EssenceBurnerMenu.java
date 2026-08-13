@@ -2,7 +2,9 @@ package de.fene296.essentia.screen.custom.essence_burner;
 
 import de.fene296.essentia.block.EssentiaBlocks;
 import de.fene296.essentia.block.entity.EssenceBurnerEntity;
+import de.fene296.essentia.item.EssentiaItems;
 import de.fene296.essentia.screen.EssentiaMenuTypes;
+import de.fene296.essentia.tags.EssentiaTags;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -54,7 +56,12 @@ public class EssenceBurnerMenu extends AbstractContainerMenu {
         addPlayerHotbar(inv, 8, 142);
 
         // Crystal slot (slot 0): the only slot on this machine.
-        this.addSlot(new ResourceHandlerSlot(handler, handler::set, 0, 80, 28));
+        this.addSlot(new ResourceHandlerSlot(handler, handler::set, 0, 80, 28) {
+            @Override
+            public boolean mayPlace(ItemStack stack) {
+                return stack.is(EssentiaTags.Items.ESSENCE_CRYSTAL);
+            }
+        });
 
         addDataSlots(data);
     }
