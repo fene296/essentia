@@ -36,7 +36,7 @@ public class EssenceBurnerEntity extends BlockEntity implements MenuProvider {
 
     public static final int BURN_DURATION = 1200;
 
-    public static final int RANGE = 8;
+    public static final int RANGE = 2;
 
     public final ItemStacksResourceHandler inventory = new ItemStacksResourceHandler(1) {
         @Override
