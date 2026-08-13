@@ -191,6 +191,30 @@ public class EssenceBurnerEntity extends BlockEntity implements MenuProvider {
         return java.util.Optional.empty();
     }
 
+    /**
+     * A single found burner: its position and which essence type it's currently
+     * burning. Returned by {@link #findAllActiveNearby}.
+     */
+    public record ActiveBurner(BlockPos pos, EssenceType type) {}
+
+    /**
+     * Finds every currently-active Essence Burner (any essence type) within
+     * {@link #RANGE} blocks of {@code pos} - unlike {@link #findActiveNearby}, which
+     * only looks for one specific type and stops at the first match.
+     */
+    public static java.util.List<ActiveBurner> findAllActiveNearby(Level level, BlockPos pos) {
+        BlockPos min = pos.offset(-RANGE, -RANGE, -RANGE);
+        BlockPos max = pos.offset(RANGE, RANGE, RANGE);
+
+        java.util.List<ActiveBurner> found = new java.util.ArrayList<>();
+        for (BlockPos checkPos : BlockPos.betweenClosed(min, max)) {
+            if (level.getBlockEntity(checkPos) instanceof EssenceBurnerEntity burner && burner.isActive()) {
+                found.add(new ActiveBurner(checkPos.immutable(), burner.getActiveType()));
+            }
+        }
+        return found;
+    }
+
     @Override
     protected void saveAdditional(ValueOutput output) {
         super.saveAdditional(output);

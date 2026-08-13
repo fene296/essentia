@@ -8,6 +8,8 @@ import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.commands.SharedSuggestionProvider;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.Style;
+import net.minecraft.network.chat.TextColor;
 import net.minecraft.server.level.ServerPlayer;
 
 import java.util.Arrays;
@@ -22,7 +24,9 @@ public class EssentiaCommands {
                                         Arrays.stream(EssenceType.values()).map(type -> type.name().toLowerCase()),
                                         builder
                                 ))
-                                .executes(EssentiaCommands::checkBurner))));
+                                .executes(EssentiaCommands::checkBurner)))
+                .then(Commands.literal("listburners")
+                        .executes(EssentiaCommands::listBurners)));
     }
 
     private static int checkBurner(com.mojang.brigadier.context.CommandContext<CommandSourceStack> context) {
@@ -47,15 +51,43 @@ public class EssentiaCommands {
 
         if (foundAt.isPresent()) {
             net.minecraft.core.BlockPos pos = foundAt.get();
-            context.getSource().sendSuccess(() -> Component.literal(
-                    type + "-Essence Burner Active  at " + pos.getX() + ", " + pos.getY() + ", " + pos.getZ()
-            ), false);
+            context.getSource().sendSuccess(() -> Component.literal(type.toString())
+                    .withStyle(Style.EMPTY.withColor(TextColor.fromRgb(type.getColor())).withBold(true).withItalic(true))
+                    .append(Component.literal(
+                            "§f-Essence Burner active at §a[" + pos.getX() + ", " + pos.getY() + ", " + pos.getZ() + "]§r"
+                    ).withStyle(Style.EMPTY.withItalic(false).withBold(false))), false);
         } else {
             context.getSource().sendSuccess(() -> Component.literal(
-                    "No active " + type + "-Essence Burner"
+                    "No active §l§o" + type + "§r-Essence Burner"
             ), false);
         }
 
         return 1;
+    }
+
+    private static int listBurners(com.mojang.brigadier.context.CommandContext<CommandSourceStack> context) {
+        if (!(context.getSource().getEntity() instanceof ServerPlayer player)) {
+            context.getSource().sendFailure(Component.literal("Only players can run this command."));
+            return 0;
+        }
+
+        java.util.List<EssenceBurnerEntity.ActiveBurner> found =
+                EssenceBurnerEntity.findAllActiveNearby(player.level(), player.blockPosition());
+
+        if (found.isEmpty()) {
+            context.getSource().sendSuccess(() -> Component.literal("No active Essence Burners nearby."), false);
+            return 1;
+        }
+
+        for (EssenceBurnerEntity.ActiveBurner burner : found) {
+            net.minecraft.core.BlockPos pos = burner.pos();
+            context.getSource().sendSuccess(() -> Component.literal(burner.type().toString())
+                    .withStyle(Style.EMPTY.withColor(TextColor.fromRgb(burner.type().getColor())).withBold(true).withItalic(true))
+                    .append(Component.literal(
+                            "§f-Essence Burner active at §a[" + pos.getX() + ", " + pos.getY() + ", " + pos.getZ() + "]§r"
+                    ).withStyle(Style.EMPTY.withItalic(false).withBold(false))), false);
+        }
+
+        return found.size();
     }
 }
